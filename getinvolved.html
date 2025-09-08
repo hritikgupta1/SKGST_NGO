@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Involved | SKGST NGO</title>
+    <link rel="icon" type="image/svg+xml" href="/images/foundation_icon.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+            background: #fff;
+            color: #000000;
+        }
+
+        .hero {
+            position: relative;
+            /* padding: 5rem 2rem 2rem; */
+            /* text-align: center; */
+            height: 80vh;
+            width: 100vw;
+            margin-top: 95px;
+            background: #3838387a;
+            color: rgb(255, 255, 255);
+            padding: 15% 10%;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("images/getInvolved_bkg_img.jpg") no-repeat center/cover;
+            background-attachment: fixed;
+            /* opacity: 0.7; */
+            /* Adjust this value for desired transparency */
+            z-index: -1;
+
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #16fa0a;
+        }
+
+        .hero p {
+            margin: 0.5rem 0 0;
+            font-size: 1.2rem;
+
+        }
+
+        .section-content {
+            padding: 5rem 10rem;
+            background-color: #e9fdea;
+            text-align: center;
+        }
+
+        .section-content p {
+            text-align: justify;
+            font-size: large;
+        }
+
+        .section-content h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #21d316;
+        }
+
+        .testimonials-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            max-width: 400px;
+            min-height: 180px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            border-left: 5px solid transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .testimonial-card p {
+            margin: 0 0 1rem;
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        .testimonial-card strong {
+            font-weight: 600;
+            color: #555;
+        }
+
+        /* Accent borders */
+        .testimonial-card.green {
+            border-left-color: #a4e0c6;
+        }
+
+        .testimonial-card.pink {
+            border-left-color: #f7c6d9;
+        }
+
+        .testimonial-card.blue {
+            border-left-color: #c4e1f5;
+        }
+
+        .testimonial-card.yellow {
+            border-left-color: #ffd89e;
+        }
+
+        .testimonial-card.teal {
+            border-left-color: #b6e2d3;
+        }
+
+        .testimonial-card.purple {
+            border-left-color: #e1bee7;
+        }
+
+
+        .section {
+            padding: 3rem 15rem;
+            /* max-width: 1000px; */
+            margin: auto;
+            background-color: #aeffb2;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #21d316;
+            margin-bottom: 2rem;
+        }
+
+        .content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-container {
+            background: #f8cee4;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.473);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #a4e0c6;
+            color: #2c3e50;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #8adbb4;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* responsive design from here onwards */
+
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 620px) {
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("images/getInvolved_bkg_img.jpg") no-repeat center/cover;
+                background-attachment: fixed;
+                /* opacity: 0.7; */
+                /* Adjust this value for desired transparency */
+                /* background-position: center auto; */
+                /* Shift down by 100px */
+                z-index: -1;
+
+            }
+
+        }
+
+        @media screen and (max-width: 849px) {
+            .hero {
+                position: relative;
+                /* padding: 5rem 2rem 2rem; */
+                /* text-align: center; */
+                height: 80vh;
+                width: 100vw;
+                margin-top: 95px;
+                background: #3838387a;
+                color: rgb(255, 255, 255);
+                padding: 40% 10%;
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+                /* max-width: 1000px; */
+                margin: auto;
+                background-color: #aeffb2;
+            }
+
+            .section-content {
+                padding: 5rem 1rem;
+                background-color: #e9fdea;
+                text-align: center;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <img src="images/logo.png" alt="logo" />
+            <div class="nav_button">
+                <li><a href="index.html" class="nav-link">ABOUT</a></li>
+                <li><a href="ourwork.html" class="nav-link">OUR WORK</a></li>
+                <li><a href="campaings.html" class="nav-link">CAMPAINGS</a></li>
+                <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
+                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
+                <li><button onclick="window.location.href='login.php'">Login</button></li>
+
+            </div>
+        </nav>
+
+        <!-- moblie nav from here onward -->
+        <!-- Hamburger Toggle Icon -->
+        <div id="hamburger" class="nav-toggle" onclick="openMobileNav()">☰</div>
+
+        <!-- Overlay (clicking closes mobile nav) -->
+        <div id="navOverlay" class="nav-overlay" onclick="closeMobileNav()"></div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <div class="close-btn" onclick="closeMobileNav()">×</div>
+            <img src="images/logo.png" alt="Logo" class="logo" />
+            <ul>
+                <li><a href="index.html" onclick="closeMobileNav()">ABOUT</a></li>
+                <li><a href="ourwork.html" onclick="closeMobileNav()">OUR WORK</a></li>
+                <li><a href="campaings.html" onclick="closeMobileNav()">CAMPAIGNS</a></li>
+                <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
+                <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
+                <div>
+                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
+
+                </div>
+                <div>
+                    <a href="login.php" class="donate-btn" onclick="closeMobileNav()">Login</a>
+
+                </div>
+
+
+
+            </ul>
+        </div>
+
+    </header>
+    <section class="hero" id="hero">
+        <h1>Get Involved with Us</h1>
+        <p>Your little effort can make a big difference.</p>
+    </section>
+
+
+    <div class="section-content">
+        <h2>Why Your Support Matters</h2>
+        <p>At SKGST NGO, we believe that change begins with individuals who care. Our volunteers and
+            supporters are the backbone of every successful campaign — from organizing blood donation drives to planting
+            trees and supporting senior citizens.</p>
+        <p>Whether you're a student, professional, homemaker, or retiree, there’s a place for you here. Join us in
+            transforming lives and building stronger, more compassionate communities.</p>
+    </div>
+
+    <div class="section">
+        <h2>Join the Movement</h2>
+        <div class="form-container">
+            <form>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Your name" required />
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Your email" required />
+
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" pattern="[0-9]{10}" maxlength="10"
+                    placeholder="Enter 10 digit phone number" required />
+
+                <label for="interest">How would you like to help?</label>
+                <select id="interest" required>
+                    <option value="">-- Select an option --</option>
+                    <option value="volunteer">Volunteer</option>
+                    <option value="donor">Donor</option>
+                    <option value="organize">Organize a campaign</option>
+                    <option value="promote">Promote on social media</option>
+                </select>
+
+                <label for="message">Tell us more</label>
+                <textarea id="message" rows="5" placeholder="Any message or idea you’d like to share?"
+                    required></textarea>
+
+                <button type="submit">
+                    <span id="btnText">SUBMIT</span>
+                    <span id="btnLoader" class="spinner" style="display: none;"></span>
+                </button>
+            </form>
+            <div id="responseMessage"></div>
+        </div>
+    </div>
+
+    <div class="section-content">
+        <h2>What Our Volunteers Say</h2>
+        <div class="testimonials-wrapper">
+
+            <div class="testimonial-card green">
+                <p>"Being a part of SRF has been life-changing. I’ve seen the joy in children’s eyes when they receive
+                    books, and the gratitude of elders who now feel heard and valued."</p>
+                <strong>– Priya S., Volunteer</strong>
+            </div>
+
+            <div class="testimonial-card pink">
+                <p>"Volunteering in blood drives gave me a sense of purpose. SRF truly makes you feel like you're part
+                    of something greater."</p>
+                <strong>– Aman R., Donor</strong>
+            </div>
+
+            <div class="testimonial-card blue">
+                <p>"Planting trees with SRF during the 'Green Breath' campaign made me realize how impactful small steps
+                    for the planet can be."</p>
+                <strong>– Ritesh T., Environmental Volunteer</strong>
+            </div>
+
+            <div class="testimonial-card yellow">
+                <p>"I was amazed at how efficiently SRF managed to install clean water systems in remote villages. Proud
+                    to have been part of that journey."</p>
+                <strong>– Meena K., Water Campaign Supporter</strong>
+            </div>
+
+            <div class="testimonial-card teal">
+                <p>"The joy of gifting books to children during the ‘Books for All’ initiative is unmatched. SRF helped
+                    me be the change I wanted to see."</p>
+                <strong>– Fatima L., Education Campaign Volunteer</strong>
+            </div>
+
+            <div class="testimonial-card purple">
+                <p>"Helping organize elderly care events gave me a new appreciation for our elders. SRF is doing
+                    heartfelt work in that space."</p>
+                <strong>– Sunil D., Senior Citizen Care Volunteer</strong>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_4493008c02e5438f9213540c254bd076~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(5).png"
+                    alt="Heart Icon">
+                <p>All our efforts are made possible only because of your support.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_f9080a11c6eb4d41929e85c098f91d53~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(9).png"
+                    alt="Tax Icon">
+                <p>Your donations are tax exempted under 80G of the Indian Income Tax Act.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_6aa6d0167b084267b90e78b554d6b5b9~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(8).png"
+                    alt="Secure Icon">
+                <p>Your donation transactions are completely safe and secure.</p>
+            </div>
+        </div>
+
+
+        <div class="footer-main">
+            <div class="footer-left">
+                <h3>SKGST NGO</h3>
+                <p><strong>Email:</strong> connect@marpu.org</p>
+                <p><strong>Phone:</strong> 79997801001</p>
+                <p><strong>Charity ID:</strong> AAGTM4991A</p>
+                <img src="images/logo.png" alt="Logo" class="footer-logo">
+            </div>
+
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">About SKGST NGO</a></li>
+                    <li><a href="ourwork.html">Our Work</a></li>
+                    <li><a href="campaings.html">Campaings</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2020 by SKGST_NGO | <a href="TCRp.html">Terms, Conditions & Refund Policy</a> | <a
+                    href="Privacy.html">Privacy
+                    Policy</a></p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelector(".form-container form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const btnText = document.getElementById("btnText");
+            const btnLoader = document.getElementById("btnLoader");
+            btnText.textContent = "Submitting...";
+            btnLoader.style.display = "inline-block"; // Show spinner
+
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                interest: document.getElementById("interest").value,
+                message: document.getElementById("message").value
+            };
+
+            const responseMessage = document.getElementById("responseMessage") || (() => {
+                const msg = document.createElement("p");
+                msg.id = "responseMessage";
+                this.appendChild(msg);
+                return msg;
+            })();
+
+            try {
+                const response = await fetch("volunteer.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    responseMessage.style.color = "green";
+                    responseMessage.textContent = result.message || "Message sent successfully!";
+                    this.reset();
+                } else {
+                    responseMessage.style.color = "red";
+                    responseMessage.textContent = result.message || "Error sending message.";
+                }
+            } catch (error) {
+                responseMessage.style.color = "red";
+                responseMessage.textContent = "Something went wrong. Please try again later.";
+                console.error("Error:", error);
+            }
+
+            // Restore button after request
+            btnText.textContent = "SUBMIT";
+            btnLoader.style.display = "none";
+        });
+
+        // scrolling effect for nav bar
+
+        let lastScrollTop = 0;
+        const nav = document.querySelector("nav");
+        const section1 = document.querySelector(".section");
+
+        window.addEventListener("scroll", () => {
+            const section1Bottom = section1.getBoundingClientRect().bottom;
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Trigger effect after scrolling past 1/8 of payment section
+            if (section1Bottom <= window.innerHeight * 2) {
+                if (currentScroll > lastScrollTop) {
+                    // Scrolling down
+                    // nav.style.top = "-100px";
+                    nav.style.top = "-400px";
+                } else {
+                    // Scrolling up
+                    nav.style.top = "0";
+                }
+            } else {
+                // Always show nav while in first half of section1
+                nav.style.top = "0";
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // for auto adjusting margin-top for section1 according to nav height
+
+        function adjustSectionMargin() {
+            const navbar = document.getElementById("navbar");
+            const section = document.getElementById("hero");
+
+            if (navbar && section) {
+                const navHeight = navbar.offsetHeight;
+                section.style.marginTop = navHeight + "px";
+            }
+        }
+
+        window.addEventListener("load", adjustSectionMargin);
+        window.addEventListener("resize", adjustSectionMargin);
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work | SKGST NGO</title>
+    <link rel="icon" type="image/svg+xml" href="/images/foundation_icon.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fdfdfd;
+            color: #000000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: #222;
+            padding: 10px 20px;
+        }
+
+
+
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+            /* margin-top: 30px; */
+
+        }
+
+        h1 {
+            font-size: xx-large;
+            margin: 0px;
+        }
+
+        .section {
+            padding: 20px 20px;
+            max-width: 1100px;
+            margin: auto;
+            /* margin-top: 95px; */
+        }
+
+        .section p {
+            line-height: 1.7;
+        }
+
+        .OurWorkBkg {
+            margin-top: 60px;
+            width: 100vw;
+            height: auto;
+            opacity: 0.9;
+        }
+
+        .OurWorkBkg img {
+            width: 100vw;
+            height: 90vh;
+
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #e9fdea;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* opacity: 0; */
+            text-align: center;
+            transform: translateY(30px);
+        }
+
+        .card img {
+            width: 50%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card p {
+            margin-top: 10px;
+        }
+
+        .accordion {
+            margin-top: 50px;
+        }
+
+        .accordion-item {
+            margin-bottom: 15px;
+        }
+
+        .accordion-title {
+            background-color: #eee;
+            cursor: pointer;
+            padding: 15px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .accordion-title:hover {
+            background-color: #ddd;
+        }
+
+        .accordion-content {
+            display: none;
+            background: #e9fdea;
+            padding: 15px;
+            border-left: 5px solid #39e647;
+        }
+
+        .cta-banner {
+            background: #e63946;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .cta-banner button {
+            background: white;
+            color: #e63946;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .cta-banner button:hover {
+            background: #f1f1f1;
+        }
+
+
+
+
+        .fade-on-scroll.fade-in {
+            /* Final state (visible & in place) */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        .gallery-section {
+            padding: 60px 30px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery:hover img {
+            transform: scale(1.05);
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 80%;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            top: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+
+        .close {
+            right: 20px;
+        }
+
+        .prev {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+
+        /* responsive design here onwards */
+
+        @media screen and (max-width: 590px) {
+
+            .prev {
+                display: none;
+            }
+
+            .next {
+                display: none;
+            }
+
+            .close {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+
+            .close,
+            .prev,
+            .next {
+                position: absolute;
+                top: 20px;
+                font-size: 20px;
+                color: #fff;
+                cursor: pointer;
+                user-select: none;
+                padding: 10px 8px;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 4px;
+            }
+
+            .prev {
+                left: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .next {
+                right: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .close {
+                right: 0px;
+            }
+
+        }
+
+        @media screen and (max-width: 849px) {
+            .OurWorkBkg img {
+                width: 100vw;
+                height: auto;
+            }
+
+        }
+
+        @media screen and (min-width: 850px) and (max-width: 1040px) {
+            .OurWorkBkg img {
+                width: 100vw;
+                height: 70vh;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <img src="images/logo.png" alt="logo" />
+            <div class="nav_button">
+                <li><a href="index.html" class="nav-link">ABOUT</a></li>
+                <li><a href="ourwork.html" class="nav-link">OUR WORK</a></li>
+                <li><a href="campaings.html" class="nav-link">CAMPAINGS</a></li>
+                <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
+                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
+                <li><button onclick="window.location.href='login.php'">Login</button></li>
+
+            </div>
+        </nav>
+
+        <!-- moblie nav from here onward -->
+        <!-- Hamburger Toggle Icon -->
+        <div id="hamburger" class="nav-toggle" onclick="openMobileNav()">☰</div>
+
+        <!-- Overlay (clicking closes mobile nav) -->
+        <div id="navOverlay" class="nav-overlay" onclick="closeMobileNav()"></div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <div class="close-btn" onclick="closeMobileNav()">×</div>
+            <img src="images/logo.png" alt="Logo" class="logo" />
+            <ul>
+                <li><a href="index.html" onclick="closeMobileNav()">ABOUT</a></li>
+                <li><a href="ourwork.html" onclick="closeMobileNav()">OUR WORK</a></li>
+                <li><a href="campaings.html" onclick="closeMobileNav()">CAMPAIGNS</a></li>
+                <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
+                <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
+                <div>
+                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
+
+                </div>
+                <div>
+                    <a href="login.php" class="donate-btn" onclick="closeMobileNav()">Login</a>
+
+                </div>
+
+
+
+            </ul>
+        </div>
+
+    </header>
+
+    <div class="OurWorkBkg" id="OurWorkBkg">
+        <img src="images/our_work_bkg.png" alt="Our Work">
+
+    </div>
+
+    <section class="section">
+        <!-- <h1>Our Work</h1> -->
+        <p>Since our inception in 2025, SKGST NGO has worked to uplift marginalized communities through
+            various impactful initiatives. We believe in action backed by compassion and transparency.</p>
+
+        <div class="cards">
+            <div class="card">
+                <img src="images/healthcare_img.png" alt="Healthcare">
+                <h3>Healthcare Camps</h3>
+                <p>Free checkups, medicines, awareness for rural and urban communities.</p>
+            </div>
+            <div class="card">
+                <img src="images/education_img.png" alt="Education">
+                <h3>Education Programs</h3>
+                <p>Supporting schools, scholarships, skills training for underprivileged students.</p>
+            </div>
+            <div class="card">
+                <img src="images/women_emp_img.png" alt="Women Empowerment">
+                <h3>Women Empowerment</h3>
+                <p>Vocational training and leadership development for women’s self-reliance.</p>
+            </div>
+            <div class="card">
+                <img src="images/skill_dev_img.png" alt="Skill Development">
+                <h3>Skill Development</h3>
+                <p>Workshops teaching income skills to youth and women for independence.</p>
+            </div>
+            <div class="card">
+                <img src="images/clean_env_img.png" alt="Clean Environment">
+                <h3>Clean Environment Drive</h3>
+                <p>Sanitation campaigns and eco-friendly practices to keep surroundings clean.</p>
+            </div>
+            <div class="card">
+                <img src="images/youth_engage_img.png" alt="Youth Engagement">
+                <h3>Youth Engagement</h3>
+                <p>Leadership, sports, and community projects empowering young people’s futures.</p>
+            </div>
+
+        </div>
+
+        <div class="accordion fade-on-scroll">
+            <div class="accordion-item">
+                <div class="accordion-title" onclick="toggleAccordion(this)">Relief Work During Disasters</div>
+                <div class="accordion-content">Emergency food and shelter for victims of floods, earthquakes, and
+                    pandemics.</div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title" onclick="toggleAccordion(this)">Old Age and Orphan Care</div>
+                <div class="accordion-content">We operate care centers offering food, shelter, education, and dignity to
+                    the neglected.</div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title" onclick="toggleAccordion(this)">Environment & Sanitation</div>
+                <div class="accordion-content">Tree plantation drives, water conservation awareness, and sanitation
+                    programs in local villages.</div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title" onclick="toggleAccordion(this)">Women & Child Welfare</div>
+                <div class="accordion-content">Programs focusing on nutrition, education, and safety of women and
+                    children in rural regions.</div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title" onclick="toggleAccordion(this)">Self-Sustainable Development</div>
+                <div class="accordion-content">Uplifting marginalized communities through micro-finance support and
+                    sustainable livelihood projects.</div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-title" onclick="toggleAccordion(this)">Public Health Awareness</div>
+                <div class="accordion-content">Awareness campaigns on population control, hygiene, tuberculosis, and
+                    lifestyle diseases.</div>
+            </div>
+        </div>
+
+        <div class="gallery-section fade-on-scroll">
+            <h2 class="section-title">Impact in Action</h2>
+            <p class="section-subtitle">A glimpse into our on-ground initiatives and community engagement activities</p>
+
+            <div class="image-gallery">
+                <div class="gallery">
+                    <img src="images/dummy_img1.png" alt="Medical Camp" class="gallery-item">
+                    <div class="caption">Free Medical Camp</div>
+                </div>
+                <div class="gallery">
+                    <img src="images/dummy_img2.jpg" alt="Tree Plantation" class="gallery-item">
+                    <div class="caption">Tree Plantation Drive</div>
+                </div>
+                <div class="gallery">
+                    <img src="images/dummy_img1.png" alt="Women Empowerment Training" class="gallery-item">
+                    <div class="caption">Women Empowerment Workshop</div>
+                </div>
+                <div class="gallery">
+                    <img src="images/dummy_img2.jpg" alt="Student Scholarship" class="gallery-item">
+                    <div class="caption">Scholarship Distribution</div>
+                </div>
+                <div class="gallery">
+                    <img src="images/dummy_img1.png" alt="Orphanage Event" class="gallery-item">
+                    <div class="caption">Orphanage Celebration</div>
+                </div>
+                <div class="gallery">
+                    <img src="images/dummy_img2.jpg" alt="Awareness Campaign" class="gallery-item">
+                    <div class="caption">Health Awareness Campaign</div>
+                </div>
+            </div>
+        </div>
+        <div id="lightbox">
+            <span class="close">&times;</span>
+            <span class="prev">&#10094;</span>
+            <img id="lightbox-img" src="" alt="Expanded Image">
+            <span class="next">&#10095;</span>
+        </div>
+
+
+
+        <div class="cta-banner fade-on-scroll">
+            <h2>You can be the reason someone’s life changes.</h2>
+            <p>Support our mission to create a healthier, fairer society. Join us as a donor or volunteer today.</p>
+            <button onclick="window.location.href='getinvolved.html'">Get Involved</button>
+        </div>
+
+
+    </section>
+
+
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_4493008c02e5438f9213540c254bd076~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(5).png"
+                    alt="Heart Icon">
+                <p>All our efforts are made possible only because of your support.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_f9080a11c6eb4d41929e85c098f91d53~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(9).png"
+                    alt="Tax Icon">
+                <p>Your donations are tax exempted under 80G of the Indian Income Tax Act.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_6aa6d0167b084267b90e78b554d6b5b9~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(8).png"
+                    alt="Secure Icon">
+                <p>Your donation transactions are completely safe and secure.</p>
+            </div>
+        </div>
+
+
+        <div class="footer-main">
+            <div class="footer-left">
+                <h3>SKGST NGO</h3>
+                <p><strong>Email:</strong> connect@marpu.org</p>
+                <p><strong>Phone:</strong> 79997801001</p>
+                <p><strong>Charity ID:</strong> AAGTM4991A</p>
+                <img src="images/logo.png" alt="Logo" class="footer-logo">
+            </div>
+
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">About SKGST NGO</a></li>
+                    <li><a href="ourwork.html">Our Work</a></li>
+                    <li><a href="campaings.html">Campaings</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2020 by SKGST_NGO | <a href="TCRp.html">Terms, Conditions & Refund Policy</a> | <a
+                    href="Privacy.html">Privacy
+                    Policy</a></p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+    <script>
+        // Accordion logic
+        function toggleAccordion(elem) {
+            const content = elem.nextElementSibling;
+            const isOpen = content.style.display === "block";
+            document.querySelectorAll('.accordion-content').forEach(c => c.style.display = 'none');
+            content.style.display = isOpen ? 'none' : 'block';
+        }
+
+        // Scroll animation
+
+        const faders = document.querySelectorAll('.fade-on-scroll');
+
+        const appearOptions = {
+            threshold: 0.1,
+            // rootMargin: '0px 0px -50px 0px'
+        };
+
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('fade-in');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+
+
+
+
+
+        // script for cards hovering
+        document.addEventListener("DOMContentLoaded", () => {
+            const cards = document.querySelectorAll('.card');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Lightbox logic
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const galleryItems = document.querySelectorAll(".gallery-item");
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const closeBtn = document.querySelector(".close");
+            const prevBtn = document.querySelector(".prev");
+            const nextBtn = document.querySelector(".next");
+
+            let currentIndex = 0;
+            let zoomed = false;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                lightbox.style.display = "flex";
+                lightboxImg.src = galleryItems[currentIndex].src;
+                lightboxImg.style.transform = "scale(1)";
+                zoomed = false;
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                lightbox.style.display = "none";
+                lightboxImg.style.transform = "scale(1)";
+                zoomed = false;
+                document.body.style.overflow = "";
+            }
+
+            function changeImage(direction) {
+                currentIndex += direction;
+                if (currentIndex < 0) currentIndex = galleryItems.length - 1; if (currentIndex >= galleryItems.length) currentIndex =
+                    0;
+                lightboxImg.src = galleryItems[currentIndex].src;
+                lightboxImg.style.transform = "scale(1)";
+                zoomed = false;
+            }
+
+            lightboxImg.addEventListener("click", function (event) {
+                if (!zoomed) {
+                    const rect = lightboxImg.getBoundingClientRect();
+                    const offsetX = event.clientX - rect.left;
+                    const offsetY = event.clientY - rect.top;
+                    const percentX = (offsetX / rect.width) * 100;
+                    const percentY = (offsetY / rect.height) * 100;
+
+                    lightboxImg.style.transformOrigin = `${percentX}% ${percentY}%`;
+                    lightboxImg.style.transform = "scale(2)";
+                } else {
+                    lightboxImg.style.transform = "scale(1)";
+                    lightboxImg.style.transformOrigin = "center";
+                }
+                zoomed = !zoomed;
+            });
+
+            galleryItems.forEach((item, index) => {
+                item.addEventListener("click", function () {
+                    openLightbox(index);
+                });
+            });
+
+            lightbox.addEventListener("click", function (event) {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            closeBtn.addEventListener("click", closeLightbox);
+
+            nextBtn.addEventListener("click", function (event) {
+                event.stopPropagation();
+                changeImage(1);
+            });
+
+            prevBtn.addEventListener("click", function (event) {
+                event.stopPropagation();
+                changeImage(-1);
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (lightbox.style.display === "flex") {
+                    if (event.key === "ArrowRight") changeImage(1);
+                    if (event.key === "ArrowLeft") changeImage(-1);
+                    if (event.key === "Escape") closeLightbox();
+                }
+            });
+        });
+
+        // scrolling effect for nav bar
+
+        let lastScrollTop = 0;
+        const nav = document.querySelector("nav");
+        const section1 = document.querySelector(".section");
+
+        window.addEventListener("scroll", () => {
+            const section1Bottom = section1.getBoundingClientRect().bottom;
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Trigger effect after scrolling past 1/8 of payment section
+            if (section1Bottom <= window.innerHeight * 4) {
+                if (currentScroll > lastScrollTop) {
+                    // Scrolling down
+                    // nav.style.top = "-100px";
+                    nav.style.top = "-400px";
+                } else {
+                    // Scrolling up
+                    nav.style.top = "0";
+                }
+            } else {
+                // Always show nav while in first half of section1
+                nav.style.top = "0";
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+
+
+        // for auto adjusting margin-top for section1 according to nav height
+
+        function adjustSectionMargin() {
+            const navbar = document.getElementById("navbar");
+            const section = document.getElementById("OurWorkBkg");
+
+            if (navbar && section) {
+                const navHeight = navbar.offsetHeight;
+                section.style.marginTop = navHeight - 20 + "px";
+            }
+        }
+
+        window.addEventListener("load", adjustSectionMargin);
+        window.addEventListener("resize", adjustSectionMargin);
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

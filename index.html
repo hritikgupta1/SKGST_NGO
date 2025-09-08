@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKGST NGO</title>
+    <link rel="icon" type="image/svg+xml" href="/images/foundation_icon.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        .section1 {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            /* z-index: -1; */
+            /* Places it behind the content */
+            /* overflow: hidden; */
+            /* font-family: 'Poppins', sans-serif; */
+            margin: 0;
+            margin-top: 95px;
+            /* padding: 15px 0; */
+            /* height: 90vh; */
+            /* background-color: #0707075d; */
+            background-color: #0000009d;
+            /* color: #333; */
+            /* display: flex; */
+            /* align-items: center; */
+            /* justify-content: center; */
+            /* text-align: center; */
+            /* z-index: 1; */
+            padding: 0 10px;
+        }
+
+        .section1::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://static.wixstatic.com/media/2cdbfc_cf1b36190dfc46598c48c7606bbc008a~mv2.jpg/v1/fill/w_2268,h_1229,al_c,q_90,enc_avif,quality_auto/2cdbfc_cf1b36190dfc46598c48c7606bbc008a~mv2.jpg") no-repeat center center/cover;
+            background-attachment: fixed;
+            /* opacity: 0.7; */
+            /* Adjust this value for desired transparency */
+            z-index: -1;
+
+        }
+
+        .intro {
+            color: white;
+            text-align: center;
+            padding-top: 30px;
+            max-width: 100vw;
+            letter-spacing: 1px;
+        }
+
+        .intro h1 {
+            margin-bottom: 10px;
+            font-size: 40px;
+        }
+
+        .intro p {
+            /* margin-bottom: 10px; */
+            font-size: 20px;
+        }
+
+        /* section 2 styling */
+        .section2 {
+            /* background-color: #fdf2e9; */
+            background-color: #e9fdea;
+            padding: 80px 40px;
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+        }
+
+
+
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        .highlighted {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 40px;
+            color: #444;
+        }
+
+        .volunteer-text,
+        .accent {
+            color: #21d316;
+        }
+
+        /* About Image */
+        .about-image img {
+            width: 100%;
+            max-width: 900px;
+            margin: 50px 0;
+        }
+
+        /* Mission Vision */
+        .mission-vision {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .mission,
+        .vision {
+            flex: 1 1 40%;
+            max-width: 500px;
+        }
+
+        .mission h4,
+        .vision h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .mission p,
+        .vision p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+            /* padding: 5px; */
+        }
+
+
+
+
+
+        /* our impact section */
+        .impact-section {
+            /* background-color: #f0f0f0; */
+            margin-top: 80px;
+            text-align: center;
+            padding: 60px 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .impact-heading {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #111;
+        }
+
+        /* for scrolling effect */
+        .impact-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .impact-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .impact-heading .accent {
+            color: #21d316;
+        }
+
+        .impact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* display: flex;
+            flex-wrap: wrap; */
+            justify-items: center;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .impact-box {
+            flex: 1 1 200px;
+            max-width: 250px;
+        }
+
+        .impact-box h3 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #21d316;
+            margin-bottom: 10px;
+        }
+
+        .impact-box .label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #21d316;
+            margin-bottom: 10px;
+        }
+
+        .impact-box .desc {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+
+
+        /* section 3 styling */
+        section#section3 {
+            /* background-color: #e6e8fc; */
+            background-color: #9bfda667;
+            padding: 60px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+        }
+
+        section#section3.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #section3 h2 {
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            padding: 40px 30px;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .environmental {
+            background-color: #8cc63f;
+        }
+
+        .economic {
+            background-color: #00aef0;
+        }
+
+        .social {
+            background-color: #ee3d75;
+        }
+
+        .partnerships {
+            background-color: #111;
+        }
+
+        .icon img {
+            width: 240px;
+            height: auto;
+            /* margin-bottom: 20px; */
+        }
+
+
+        h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: disc;
+            text-align: left;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        #section3 strong {
+            color: #fff;
+        }
+
+
+        /* responsive design from here onwards */
+
+        @media screen and (max-width: 377px) {
+            .section2 {
+
+                background-color: #e9fdea;
+                padding: 80px 20px;
+                font-family: 'Montserrat', sans-serif;
+                color: #333;
+            }
+        }
+
+        @media screen and (max-width: 559px) {
+            ul {
+                list-style-type: disc;
+                text-align: left;
+                padding-left: 0px;
+                margin: 0;
+            }
+
+        }
+
+
+        @media screen and (max-width: 720px) {
+            .mission-vision {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                margin-top: 50px;
+                gap: 30px;
+                text-align: center;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+
+
+        @media screen and (min-width: 560px) and (max-width: 640px) {
+            .impact-box {
+                flex: 1 1 200px;
+                max-width: 250px;
+                text-align: justify;
+            }
+        }
+
+        @media screen and (max-width: 849px) {
+            .section1 {
+                position: relative;
+                height: 80vh;
+                width: 100vw;
+                /* z-index: -1; */
+                /* Places it behind the content */
+                /* overflow: hidden; */
+                /* font-family: 'Poppins', sans-serif; */
+                margin: 0;
+                margin-top: 95px;
+                /* padding: 15px 0; */
+                /* height: 90vh; */
+                /* background-color: #0707075d; */
+                background-color: #0000009d;
+                /* color: #333; */
+                /* display: flex; */
+                /* align-items: center; */
+                /* justify-content: center; */
+                /* text-align: center; */
+                /* z-index: 1; */
+                padding: 30% 10px;
+            }
+        }
+
+        @media screen and (min-width: 560px) and (max-width: 969px) {
+            .container {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(200px, 1fr));
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-items: center;
+            }
+
+            ul {
+                list-style-type: disc;
+                text-align: left;
+                padding-left: 0px;
+                margin: 0;
+            }
+
+            .icon img {
+                width: 175px;
+                height: auto;
+                /* margin-bottom: 20px; */
+            }
+        }
+
+        @media screen and (min-width: 560px) and (max-width: 720px) {
+            .icon img {
+                width: 150px;
+                height: auto;
+                /* margin-bottom: 20px; */
+            }
+
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 969px) {
+            .impact-container {
+                justify-content: center;
+                gap: 40px;
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(200px, 1fr));
+            }
+
+        }
+
+        @media screen and (min-width: 970px) {
+            .impact-container {
+                justify-content: center;
+                gap: 40px;
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(4, minmax(200px, 1fr));
+            }
+        }
+
+        @media screen and (min-width: 970px) and (max-width: 1039px) {
+            .icon img {
+                width: 150px;
+                height: auto;
+                /* margin-bottom: 20px; */
+            }
+
+            ul {
+                list-style-type: disc;
+                text-align: left;
+                padding-left: 0px;
+                margin: 0;
+            }
+
+            .column {
+                flex: 1;
+                min-width: 200px;
+                max-width: 300px;
+                padding: 40px 15px;
+                color: white;
+                border-radius: 10px;
+            }
+
+        }
+
+        @media screen and (min-width: 1040px) and (max-width: 1175px) {
+
+            .icon img {
+                width: 200px;
+                height: auto;
+                /* margin-bottom: 20px; */
+            }
+
+            ul {
+                list-style-type: disc;
+                text-align: left;
+                padding-left: 10px;
+                margin: 0;
+            }
+
+            .column {
+                flex: 1;
+                min-width: 200px;
+                max-width: 300px;
+                padding: 40px 15px;
+                color: white;
+                border-radius: 10px;
+            }
+
+        }
+
+        @media screen and (min-width: 1176px) and (max-width: 1300px) {
+            .icon img {
+                width: 200px;
+                height: auto;
+                /* margin-bottom: 20px; */
+            }
+
+            ul {
+                list-style-type: disc;
+                text-align: left;
+                padding-left: 0px;
+                margin: 0;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <img src="images/logo.png" alt="logo" />
+            <div class="nav_button">
+                <li><a href="index.html" class="nav-link">ABOUT</a></li>
+                <li><a href="ourwork.html" class="nav-link">OUR WORK</a></li>
+                <li><a href="campaings.html" class="nav-link">CAMPAINGS</a></li>
+                <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
+                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
+                <li><button onclick="window.location.href='login.php'">Login</button></li>
+
+            </div>
+        </nav>
+
+        <!-- moblie nav from here onward -->
+        <!-- Hamburger Toggle Icon -->
+        <div id="hamburger" class="nav-toggle" onclick="openMobileNav()">☰</div>
+
+        <!-- Overlay (clicking closes mobile nav) -->
+        <div id="navOverlay" class="nav-overlay" onclick="closeMobileNav()"></div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <div class="close-btn" onclick="closeMobileNav()">×</div>
+            <img src="images/logo.png" alt="Logo" class="logo" />
+            <ul>
+                <li><a href="index.html" onclick="closeMobileNav()">ABOUT</a></li>
+                <li><a href="ourwork.html" onclick="closeMobileNav()">OUR WORK</a></li>
+                <li><a href="campaings.html" onclick="closeMobileNav()">CAMPAIGNS</a></li>
+                <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
+                <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
+                <div>
+                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
+
+                </div>
+                <div>
+                    <a href="login.php" class="donate-btn" onclick="closeMobileNav()">Login</a>
+
+                </div>
+
+
+
+            </ul>
+        </div>
+
+    </header>
+
+    <section class="section1" id="section1">
+        <div class="intro">
+            <h1>CHANGE WITHIN TO CHANGE THE WORLD</h1>
+            <p>SUSTAINABLE DEVELOPMENT GOALS | VOLUNTEERING | CREATIVE SOLUTIONS</p>
+
+        </div>
+    </section>
+
+    <section class="section2">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>ABOUT US</h2>
+                <p><strong>SKGST NGO </strong> – a beacon of service and transformation was founded in
+                    2020 with a vision to uplift and empower underserved communities across India. Rooted in compassion
+                    and guided by purpose, we strive to bridge the gap between need and opportunity through holistic
+                    development.
+                    At SKGST NGO, we channel collective strength into impactful action. Our focus spans
+                    across <strong>healthcare, education, women and child welfare, skill development, and environmental
+                        sustainability.</strong> With a passionate team and community-driven approach, we provide
+                    meaningful support to children, families, the elderly, and the differently-abled.
+
+                    We don’t just respond to issues—we anticipate, innovate, and act with empathy. From conducting free
+                    medical camps and disaster relief to abolishing social evils like child marriage and bonded labor,
+                    our initiatives aim to build a just and dignified society for all.
+
+                    Driven by our mission of inclusive growth and our vision of a transformed India, we collaborate with
+                    governments, corporations, and the public to amplify our reach and impact.
+
+                    Join us in shaping a future where every voice is heard, every life is valued, and every individual
+                    has the power to rise.</p>
+                <h2 class="highlighted">ONE OF INDIA'S LARGEST <span class="volunteer-text">VOLUNTEER</span>
+                    ORGANISATION
+                </h2>
+            </div>
+
+            <div class="about-image">
+                <img src="https://static.wixstatic.com/media/2cdbfc_92326ae264c547afb8a8ff8428cf3e5b~mv2.png/v1/crop/x_0,y_0,w_5760,h_2646/fill/w_979,h_450,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/Untitled%20design%20(1).png"
+                    alt="About Illustration">
+            </div>
+
+            <div class="mission-vision">
+                <div class="mission">
+                    <h4>OUR <span class="accent">MISSION</span></h4>
+                    <p>To empower underserved communities with access to education, healthcare, and livelihoods while
+                        advancing equality, sustainability, and a life of dignity for all.</p>
+                </div>
+                <div class="vision">
+                    <h4>OUR <span class="accent">VISION</span></h4>
+                    <p>To build an inclusive, just, and healthy society where everyone, regardless of background, can
+                        thrive, contribute meaningfully, and live with dignity and purpose.</p>
+                </div>
+            </div>
+
+            <!-- our impact section -->
+
+            <div class="impact-section">
+                <h2 class="impact-heading">OUR <span class="accent">IMPACT</span></h2>
+                <div class="impact-container">
+
+                    <div class="impact-box">
+                        <h3 data-target="5000">0+</h3>
+                        <p class="label">CHILDREN EDUCATED</p>
+                        <p class="desc">Books and supplies for rural children's education.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <h3 data-target="300">0+</h3>
+                        <p class="label">TREES PLANTED</p>
+                        <p class="desc">Green drives promoting sustainability and awareness.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <h3 data-target="100">0+</h3>
+                        <p class="label">SENIORS SUPPORTED</p>
+                        <p class="desc">Helping elders through care, respect, and connection.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <h3 data-target="100">0+</h3>
+                        <p class="label">WOMEN EMPOWERED</p>
+                        <p class="desc">Skilled, educated, and supported for brighter futures.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="section3">
+        <h2>OUR WORK THEME</h2>
+        <div class="container">
+            <div class="column environmental">
+                <div class="icon">
+                    <img src="images/education&awareness_img.png" alt="EDUCATION & AWARENESS">
+                </div>
+                <!-- <h3>EDUCATION & AWARENESS</h3> -->
+                <ul>
+                    <li><strong>1. &nbsp</strong> Free educational support for underprivileged children.</li>
+                    <li><strong>2. &nbsp</strong> Awareness drives on hygiene, health & sanitation.</li>
+                    <li><strong>3. &nbsp</strong> Workshops on digital literacy & basic skills.</li>
+                    <li><strong>4. &nbsp</strong> Career guidance for students in rural areas.</li>
+                    <li><strong>5. &nbsp</strong> Distribution of educational kits & books.</li>
+                    <li><strong>6. &nbsp</strong> Programs to promote girl child education.</li>
+                </ul>
+            </div>
+            <div class="column economic">
+                <div class="icon">
+                    <img src="images/COMMUNITY_WELFARE_img.png" alt="COMMUNITY WELFARE">
+                </div>
+                <!-- <h3>COMMUNITY WELFARE</h3> -->
+                <ul>
+                    <li><strong>1. &nbsp</strong> Food and clothes distribution in slums & rural areas.</li>
+                    <li><strong>2. &nbsp</strong> Support for elderly and differently-abled people.</li>
+                    <li><strong>3. &nbsp</strong> Cleanliness drives in public areas and schools.</li>
+                    <li><strong>4. &nbsp</strong> Providing shelter support in emergencies.</li>
+                    <li><strong>5. &nbsp</strong> Promoting safe drinking water initiatives.</li>
+                    <li><strong>6. &nbsp</strong> Helping families during natural disasters.</li>
+                </ul>
+            </div>
+            <div class="column social">
+                <div class="icon">
+                    <img src="images/Health_initiative_img.png" alt="HEALTH INITIATIVES">
+                </div>
+                <!-- <h3>HEALTH INITIATIVES</h3> -->
+                <ul>
+                    <li><strong>1. &nbsp</strong> Free health check-up camps in underserved areas.</li>
+                    <li><strong>2. &nbsp</strong> Blood donation & eye donation awareness programs.</li>
+                    <li><strong>3. &nbsp</strong> Promoting yoga, fitness, and mental wellness.</li>
+                    <li><strong>4. &nbsp</strong> First-aid and emergency care training workshops.</li>
+                    <li><strong>5. &nbsp</strong> Health awareness sessions in schools & colleges.</li>
+                    <li><strong>6. &nbsp</strong> Campaigns on menstrual hygiene for girls.</li>
+                </ul>
+            </div>
+            <div class="column partnerships">
+                <div class="icon">
+                    <img src="images/collaboration&support_img.png" alt="COLLABORATIONS & SUPPORT">
+                </div>
+                <!-- <h3>COLLABORATIONS & SUPPORT</h3> -->
+                <ul>
+                    <li><strong>1. &nbsp</strong> Partnering with schools, hospitals & local bodies.</li>
+                    <li><strong>2. &nbsp</strong> Volunteer drives with students and youth groups.</li>
+                    <li><strong>3. &nbsp</strong> Joint campaigns with other NGOs and foundations.</li>
+                    <li><strong>4. &nbsp</strong> Corporate social responsibility (CSR) partnerships.</li>
+                    <li><strong>5. &nbsp</strong> Skill-sharing networks with local professionals.</li>
+                    <li><strong>6. &nbsp</strong> Building a strong, socially responsible ecosystem.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_4493008c02e5438f9213540c254bd076~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(5).png"
+                    alt="Heart Icon">
+                <p>All our efforts are made possible only because of your support.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_f9080a11c6eb4d41929e85c098f91d53~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(9).png"
+                    alt="Tax Icon">
+                <p>Your donations are tax exempted under 80G of the Indian Income Tax Act.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_6aa6d0167b084267b90e78b554d6b5b9~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(8).png"
+                    alt="Secure Icon">
+                <p>Your donation transactions are completely safe and secure.</p>
+            </div>
+        </div>
+
+
+        <div class="footer-main">
+            <div class="footer-left">
+                <h3>SKGST NGO</h3>
+                <p><strong>Email:</strong> connect@marpu.org</p>
+                <p><strong>Phone:</strong> 79997801001</p>
+                <p><strong>Charity ID:</strong> AAGTM4991A</p>
+                <img src="images/logo.png" alt="Logo" class="footer-logo">
+            </div>
+
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">About SKGST NGO</a></li>
+                    <li><a href="ourwork.html">Our Work</a></li>
+                    <li><a href="campaings.html">Campaings</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <a href="http://google.com"><i class="fab fa-instagram"></i></a>
+            <a href="http://google.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="http://google.com"><i class="fab fa-twitter"></i></a>
+            <a href="http://google.com"><i class="fab fa-linkedin-in"></i></a>
+            <a href="http://google.com"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2020 by SKGST_NGO | <a href="TCRp.html">Terms, Conditions & Refund Policy</a> | <a
+                    href="Privacy.html">Privacy
+                    Policy</a></p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+    <script>
+        //for getting numbers in section 2 changes dynamically
+
+
+        function animateCount(el, target) {
+            let count = 0;
+            const speed = target / 100; // smaller = slower
+            const interval = setInterval(() => {
+                count += speed;
+                if (count >= target) {
+                    count = target;
+                    clearInterval(interval);
+                }
+                el.textContent = Math.floor(count) + "+";
+            }, 20);
+        }
+
+        function handleScrollAnimation() {
+            const section = document.querySelector(".impact-section");
+            const boxes = document.querySelectorAll(".impact-box h3");
+
+            const sectionTop = section.getBoundingClientRect().top;
+            const triggerPoint = window.innerHeight * 0.8;
+
+            if (sectionTop < triggerPoint && !section.dataset.animated) {
+                boxes.forEach(h3 => {
+                    const target = +h3.dataset.target;
+                    animateCount(h3, target);
+                });
+                section.dataset.animated = "true";
+            }
+        }
+
+        window.addEventListener("scroll", handleScrollAnimation);
+
+        // scrolling effect for section 2
+        const section2 = document.querySelector('.impact-section');
+
+        const section2Observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    section2.classList.add('visible');
+                    section2Observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        section2Observer.observe(section2);
+
+        // scrolling effect for section 3
+        const section3 = document.getElementById('section3');
+
+        const section3Observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    section3.classList.add('visible');
+                    section3Observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        section3Observer.observe(section3);
+
+        // scrolling effect for nav bar
+
+        let lastScrollTop = 0;
+        const nav = document.querySelector("nav");
+        const section1 = document.querySelector(".section1");
+
+        window.addEventListener("scroll", () => {
+            const section1Bottom = section1.getBoundingClientRect().bottom;
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Trigger effect after scrolling past half of section1
+            if (section1Bottom <= window.innerHeight / 2) {
+                if (currentScroll > lastScrollTop) {
+                    // Scrolling down
+                    // nav.style.top = "-100px";
+                    nav.style.top = "-400px";
+                } else {
+                    // Scrolling up
+                    nav.style.top = "0";
+                }
+            } else {
+                // Always show nav while in first half of section1
+                nav.style.top = "0";
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // for auto adjusting margin-top for section1 according to nav height
+
+        function adjustSectionMargin() {
+            const navbar = document.getElementById("navbar");
+            const section = document.getElementById("section1");
+
+            if (navbar && section) {
+                const navHeight = navbar.offsetHeight;
+                section.style.marginTop = navHeight + "px";
+            }
+        }
+
+        window.addEventListener("load", adjustSectionMargin);
+        window.addEventListener("resize", adjustSectionMargin);
+
+
+    </script>
+</body>
+
+</html>

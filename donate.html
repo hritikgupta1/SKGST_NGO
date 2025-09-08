@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate | SKGST NGO</title>
+    <link rel="icon" type="image/svg+xml" href="/images/foundation_icon.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <style>
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 40px auto;
+            /* padding: 20px; */
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .donate-left {
+            flex: 1;
+            padding: 20px;
+            background-color: #b1f0b5;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+            text-align: justify;
+        }
+
+        .donate-left .logo {
+            width: 170px;
+            margin-bottom: 10px;
+        }
+
+        .donate-left h2 {
+            margin-top: 0;
+            color: #142c70;
+            text-align: left;
+        }
+
+        .donate-left p {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .contact p {
+            margin: 4px 0;
+        }
+
+        .donate-right {
+            flex: 1;
+            padding: 20px;
+            background: #63a768;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .payment {
+            position: relative;
+            height: auto;
+            width: 100vw;
+            /* z-index: -1; */
+            /* Places it behind the content */
+            /* overflow: hidden; */
+            /* font-family: 'Poppins', sans-serif; */
+            margin: 0;
+            margin-top: 95px;
+            padding: 10px;
+            /* padding: 15px 0; */
+            /* height: 90vh; */
+            /* background-color: #0707075d; */
+            background-color: white;
+            /* color: #333; */
+            /* display: flex; */
+            /* align-items: center; */
+            /* justify-content: center; */
+            /* text-align: center; */
+            /* z-index: 1; */
+        }
+
+        .payment-section {
+            max-width: 500px;
+            margin: auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-section h2 {
+            font-size: 1.5rem;
+            color: #002c5f;
+            border-bottom: 2px solid orange;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        form .optional {
+            color: gray;
+            font-size: 0.8rem;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .amount-field input {
+            width: 100%;
+            padding: 9px 10px;
+            margin-top: 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .amount-field {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .amount-field span {
+            padding: 8px;
+            background: #eee;
+            border: 1px solid #ccc;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .amount-field input {
+            flex: 1;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .payment-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .payment-icons img {
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        #payBtn {
+            background-color: orange;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* responsive design from here onwards */
+
+        @media screen and (max-width: 849px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                max-width: 1200px;
+                margin: 40px auto;
+                /* padding: 20px; */
+                background: white;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            .donate-left {
+                flex: 1;
+                padding: 20px;
+                background-color: #b1f0b5;
+                border-radius: 8px;
+                text-align: justify;
+            }
+
+            .donate-right {
+                flex: 1;
+                padding: 20px;
+                background: #63a768;
+                border-radius: 8px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <img src="images/logo.png" alt="logo" />
+            <div class="nav_button">
+                <li><a href="index.html" class="nav-link">ABOUT</a></li>
+                <li><a href="ourwork.html" class="nav-link">OUR WORK</a></li>
+                <li><a href="campaings.html" class="nav-link">CAMPAINGS</a></li>
+                <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
+                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
+                <li><button onclick="window.location.href='login.php'">Login</button></li>
+
+            </div>
+        </nav>
+
+        <!-- moblie nav from here onward -->
+        <!-- Hamburger Toggle Icon -->
+        <div id="hamburger" class="nav-toggle" onclick="openMobileNav()">☰</div>
+
+        <!-- Overlay (clicking closes mobile nav) -->
+        <div id="navOverlay" class="nav-overlay" onclick="closeMobileNav()"></div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <div class="close-btn" onclick="closeMobileNav()">×</div>
+            <img src="images/logo.png" alt="Logo" class="logo" />
+            <ul>
+                <li><a href="index.html" onclick="closeMobileNav()">ABOUT</a></li>
+                <li><a href="ourwork.html" onclick="closeMobileNav()">OUR WORK</a></li>
+                <li><a href="campaings.html" onclick="closeMobileNav()">CAMPAIGNS</a></li>
+                <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
+                <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
+                <div>
+                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
+
+                </div>
+                <div>
+                    <a href="login.php" class="donate-btn" onclick="closeMobileNav()">Login</a>
+
+                </div>
+
+
+
+            </ul>
+        </div>
+
+    </header>
+    <section class="payment" id="payment">
+        <div class="container">
+            <div class="donate-left">
+                <img src="images/logo.png" alt="Logo" class="logo" />
+                <h2>SKGST NGO</h2>
+                <p>
+                    Thank you for considering a donation to our NGO (non-governmental organization). Your generosity
+                    helps to fund our
+                    programs and initiatives, which work to protect and preserve the environment and advance sustainable
+                    development.
+                </p>
+                <p>
+                    Our donation portal is secure and easy to use. You can make a one-time donation or set up a
+                    recurring donation to support
+                    our efforts on an ongoing basis. All donations are tax-deductible and we offer a variety of payment
+                    options, including
+                    credit cards and UPI.
+                </p>
+                <p>
+                    Your donation will make a real difference in the world. Whether you give a small or large amount,
+                    every contribution
+                    helps to advance our mission and make a positive impact on the planet. Thank you for your support.
+                </p>
+                <div class="contact">
+                    <p><strong>Contact Us:</strong></p>
+                    <p>📧 ragnathfoundation@gmail.com</p>
+                    <p>📞 9876543210</p>
+                </div>
+                <br>
+                <br>
+                <div>
+                    <strong>Terms & Conditions:</strong>
+                    <p>
+                        You agree to share information entered on this page with SKGST NGO (owner of this
+                        page) and Razorpay, adhering to applicable laws.
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="donate-right">
+                <div class="payment-section">
+                    <h2>Payment Details</h2>
+                    <form id="donationForm">
+                        <label>Name</label>
+                        <input type="text" id="name" required>
+
+                        <label>Email</label>
+                        <input type="email" id="email" required>
+
+                        <label>Phone</label>
+                        <input type="tel" id="phone" required>
+
+                        <label>Address <span class="optional">(Optional)</span></label>
+                        <input type="text" id="address">
+
+                        <label>PAN Number <span class="optional">(Optional)</span></label>
+                        <input type="text" id="pan">
+
+                        <label>Amount</label>
+                        <div class="amount-field">
+                            <span>₹</span>
+                            <input type="text" id="amount" placeholder="Enter Amount" required>
+                        </div>
+                        <small id="amountWords" class="text-muted"></small>
+
+
+                        <div class="payment-footer">
+                            <div class="payment-icons">
+                                <img src="images/upi_logo.svg" alt="UPI">
+                                <img src="images/visa_logo.svg" alt="VISA">
+                                <img src="images/RuPay_logo.svg" alt="RuPay">
+                                <img src="images/Mastercard_logo.svg" alt="MasterCard">
+                            </div>
+                            <button type="submit" id="payBtn">Pay ₹0.00</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_4493008c02e5438f9213540c254bd076~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(5).png"
+                    alt="Heart Icon">
+                <p>All our efforts are made possible only because of your support.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_f9080a11c6eb4d41929e85c098f91d53~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(9).png"
+                    alt="Tax Icon">
+                <p>Your donations are tax exempted under 80G of the Indian Income Tax Act.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_6aa6d0167b084267b90e78b554d6b5b9~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(8).png"
+                    alt="Secure Icon">
+                <p>Your donation transactions are completely safe and secure.</p>
+            </div>
+        </div>
+
+
+        <div class="footer-main">
+            <div class="footer-left">
+                <h3>SKGST NGO</h3>
+                <p><strong>Email:</strong> connect@marpu.org</p>
+                <p><strong>Phone:</strong> 79997801001</p>
+                <p><strong>Charity ID:</strong> AAGTM4991A</p>
+                <img src="images/logo.png" alt="Logo" class="footer-logo">
+            </div>
+
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">About SKGST NGO</a></li>
+                    <li><a href="ourwork.html">Our Work</a></li>
+                    <li><a href="campaings.html">Campaings</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2020 by SKGST_NGO | <a href="TCRp.html">Terms, Conditions & Refund Policy</a> | <a
+                    href="Privacy.html">Privacy
+                    Policy</a></p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+    <script>
+        const amountInput = document.getElementById('amount');
+        const payBtn = document.getElementById('payBtn');
+        const amountWords = document.getElementById('amountWords');
+
+        amountInput.addEventListener('input', () => {
+            const value = parseFloat(amountInput.value || 0).toFixed(2);
+            payBtn.textContent = `Pay ₹${value}`;
+        });
+
+        document.getElementById('donationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const donorData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                address: document.getElementById("address").value,
+                pan: document.getElementById("pan").value,
+                amount: document.getElementById("amount").value,
+            };
+
+            if (donorData.amount <= 0) {
+                alert("Please enter a valid donation amount.");
+                return;
+            }
+
+            // ✅ Here you can integrate Razorpay, Stripe, or redirect to a payment page
+            const options = {
+                key: "YOUR_RAZORPAY_KEY_ID", // Replace with your Razorpay Key
+                amount: donorData.amount * 100,
+                currency: "INR",
+                name: "SKGST NGO",
+                description: "Donation",
+                handler: function (response) {
+                    // ✅ On successful payment, save donation
+                    fetch("save_donation.php", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            ...donorData,
+                            payment_id: response.razorpay_payment_id
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                document.getElementById("donationSection").innerHTML = `
+                                <div class="thankyou-container">
+                                <h2>Thank You for Your Donation 🎉</h2>
+                                <p>We truly appreciate your generous support.</p>
+                                <div class="txn">
+                                    <strong>Transaction ID:</strong> ${data.donation.payment_id}<br>
+                                    <strong>Name:</strong> ${data.donation.name}<br>
+                                    <strong>Email:</strong> ${data.donation.email}<br>
+                                    <strong>Amount:</strong> ₹${data.donation.amount}<br>
+                                    <strong>Date:</strong> ${data.donation.created_at}
+                                </div>
+                                <a href="index.html">← Back to Home</a>
+                                </div>`;
+                            } else {
+                                alert("Error saving donation: " + data.message);
+                            }
+                        });
+                },
+                prefill: {
+                    name: donorData.name,
+                    email: donorData.email,
+                    contact: donorData.phone
+                },
+                theme: { color: "#3399cc" }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        });
+
+
+        // scrolling effect for nav bar
+
+        let lastScrollTop = 0;
+        const nav = document.querySelector("nav");
+        const section1 = document.querySelector(".payment");
+
+        window.addEventListener("scroll", () => {
+            const section1Bottom = section1.getBoundingClientRect().bottom;
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Trigger effect after scrolling past 1/8 of payment section
+            if (section1Bottom <= window.innerHeight * 0.875) {
+                if (currentScroll > lastScrollTop) {
+                    // Scrolling down
+                    // nav.style.top = "-100px";
+                    nav.style.top = "-400px";
+                } else {
+                    // Scrolling up
+                    nav.style.top = "0";
+                }
+            } else {
+                // Always show nav while in first half of section1
+                nav.style.top = "0";
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // for auto adjusting margin-top for section1 according to nav height
+
+        function adjustSectionMargin() {
+            const navbar = document.getElementById("navbar");
+            const section = document.getElementById("payment");
+
+            if (navbar && section) {
+                const navHeight = navbar.offsetHeight;
+                section.style.marginTop = navHeight + "px";
+            }
+        }
+
+        window.addEventListener("load", adjustSectionMargin);
+        window.addEventListener("resize", adjustSectionMargin);
+    </script>
+
+    <script>
+
+        // Convert number to words (Indian format)
+        function numberToWords(num) {
+            if (num === 0) return "Zero Rupees Only";
+
+            const a = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
+                "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
+                "Eighteen", "Nineteen"];
+            const b = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
+
+            function inWords(n) {
+                if (n < 20) return a[n];
+                if (n < 100) return b[Math.floor(n / 10)] + (n % 10 ? " " + a[n % 10] : "");
+                if (n < 1000) return a[Math.floor(n / 100)] + " Hundred" + (n % 100 ? " " + inWords(n % 100) : "");
+                return "";
+            }
+
+            let str = "";
+            const crore = Math.floor(num / 10000000);
+            const lakh = Math.floor((num / 100000) % 100);
+            const thousand = Math.floor((num / 1000) % 100);
+            const hundred = Math.floor((num / 100) % 10);
+            const rest = num % 100;
+
+            if (crore) str += inWords(crore) + " Crore ";
+            if (lakh) str += inWords(lakh) + " Lakh ";
+            if (thousand) str += inWords(thousand) + " Thousand ";
+            if (hundred) str += a[hundred] + " Hundred ";
+            if (rest) str += inWords(rest) + " ";
+
+            return str.trim() + " Rupees Only";
+        }
+
+        // Format Indian numbers with commas
+        function formatIndianNumber(x) {
+            x = x.replace(/,/g, "");
+            if (x === "") return "";
+            let num = parseInt(x);
+            if (isNaN(num)) return "";
+            let lastThree = x.substring(x.length - 3);
+            let otherNumbers = x.substring(0, x.length - 3);
+            if (otherNumbers !== '') lastThree = ',' + lastThree;
+            return otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        }
+
+        amountInput.addEventListener('input', () => {
+            let raw = amountInput.value.replace(/,/g, "");
+            let num = parseInt(raw) || 0;
+
+            // Format with commas
+            amountInput.value = formatIndianNumber(raw);
+
+            // Update button text
+            payBtn.textContent = num > 0 ? `Pay ₹${formatIndianNumber(raw)}` : "Pay ₹0.00";
+
+            // Update words below input
+            amountWords.textContent = num > 0 ? numberToWords(num) : "";
+        });
+    </script>
+
+
+
+</body>
+
+</html>

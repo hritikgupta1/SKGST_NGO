@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | SKGST_NGO</title>
+    <link rel="icon" type="image/svg+xml" href="/images/foundation_icon.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .section1 {
+            margin-top: 95px;
+            /* padding: 20px; */
+            /* background-color: #e9fdea; */
+            font-size: 16px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .section1 img {
+            width: 100vw;
+            height: 70vh;
+            /* opacity: 0.8; */
+        }
+
+        .contact-section {
+            /* background: #d1f3d3; */
+            background: linear-gradient(to right, #2e9d84, #3cbf88);
+            padding: 40px 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .contact-info,
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h3 {
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            line-height: 2;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .contact-info li {
+            list-style-type: disc;
+            padding: 0;
+        }
+
+        .contact-info a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .contact-form h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .contact-form p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            font-size: 14px;
+            margin: 10px 0 5px;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-row .half {
+            flex: 1;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            color: white;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button[type="submit"]:hover {
+            background: #222;
+        }
+
+        iframe {
+            border-radius: 10px;
+        }
+
+        .spinner {
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #3498db;
+            border-radius: 50%;
+            width: 14px;
+            height: 14px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* responsive design from here onwards */
+
+        @media screen and (max-width: 849px) {
+            .section1 img {
+                width: 100vw;
+                height: auto;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <img src="images/logo.png" alt="logo" />
+            <div class="nav_button">
+                <li><a href="index.html" class="nav-link">ABOUT</a></li>
+                <li><a href="ourwork.html" class="nav-link">OUR WORK</a></li>
+                <li><a href="campaings.html" class="nav-link">CAMPAINGS</a></li>
+                <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
+                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
+                <li><button onclick="window.location.href='login.php'">Login</button></li>
+
+            </div>
+        </nav>
+
+        <!-- moblie nav from here onward -->
+        <!-- Hamburger Toggle Icon -->
+        <div id="hamburger" class="nav-toggle" onclick="openMobileNav()">☰</div>
+
+        <!-- Overlay (clicking closes mobile nav) -->
+        <div id="navOverlay" class="nav-overlay" onclick="closeMobileNav()"></div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <div class="close-btn" onclick="closeMobileNav()">×</div>
+            <img src="images/logo.png" alt="Logo" class="logo" />
+            <ul>
+                <li><a href="index.html" onclick="closeMobileNav()">ABOUT</a></li>
+                <li><a href="ourwork.html" onclick="closeMobileNav()">OUR WORK</a></li>
+                <li><a href="campaings.html" onclick="closeMobileNav()">CAMPAIGNS</a></li>
+                <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
+                <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
+                <div>
+                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
+
+                </div>
+                <div>
+                    <a href="login.php" class="donate-btn" onclick="closeMobileNav()">Login</a>
+
+                </div>
+
+
+
+            </ul>
+        </div>
+
+    </header>
+
+    <section class="section1" id="section1">
+        <img src="images/contact_img.png" alt="contact">
+
+    </section>
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>FOR CORPORATE PARTNERSHIPS</h3>
+                <p>Parul Sharma – 9266740073<br><a
+                        href="mailto:cp@smilefoundationindia.org">cp@smilefoundationindia.org</a></p>
+
+                <h3>DONATION RELATED QUERIES</h3>
+                <li><strong>FOR NEW DONORS</strong>
+                    <p>Akanksha Wahi – 7042128777<br><a
+                            href="mailto:donation@smilefoundationindia.org">donation@smilefoundationindia.org</a></p>
+                </li>
+                <li><strong>FOR EXISTING DONORS</strong>
+                    <p>Parul Kapoor – 8882517003<br><a
+                            href="mailto:donorcare@smilefoundationindia.org">donorcare@smilefoundationindia.org</a></p>
+                </li>
+                <li><strong>FOR ALL GENERAL QUERIES</strong>
+                    <p><a href="mailto:info@smilefoundationindia.org">info@smilefoundationindia.org</a></p>
+                </li>
+
+
+
+
+
+            </div>
+
+            <div class="contact-form">
+                <h3>HELPDESK</h3>
+                <p>For any grievance, suggestions and queries kindly write to us.</p>
+
+                <form id="contactForm" method="POST" action="send.php">
+                    <label>Name <span>*</span></label>
+                    <input type="text" name="name" placeholder="Name" required />
+
+                    <div class="form-row">
+                        <div class="half">
+                            <label>Phone <span>*</span></label>
+                            <input type="tel" name="Mobile" pattern="[0-9]{10}" maxlength="10"
+                                placeholder="Enter 10 digit phone number" required />
+                        </div>
+                        <div class="half">
+                            <label>Email <span>*</span></label>
+                            <input type="email" name="email" placeholder="Email" required />
+                        </div>
+                    </div>
+
+                    <label>Message <span>*</span></label>
+                    <textarea name="message" placeholder="Message" required></textarea>
+
+                    <button type="submit">
+                        <span id="btnText">SUBMIT</span>
+                        <span id="btnLoader" class="spinner" style="display: none;"></span>
+                    </button>
+                </form>
+                <div id="responseMessage"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Find Us Map -->
+    <section id="find-us" style="padding: 40px 20px; background: linear-gradient(to right, #2e9d84, #3cbf88);">
+        <h2 style="text-align: center; font-size: 28px; margin-bottom: 20px; color: #333;">
+            Find Us Here
+        </h2>
+        <div
+            style="width: 100%; max-width: 1200px; margin: 0 auto; height: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1751.8993033860147!2d77.281917!3d28.633744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfba8f905de7d%3A0x48b7cd5894d0b879!2sHira%20Sweets!5e0!3m2!1sen!2sin!4v1688648389381!5m2!1sen!2sin"
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </section>
+
+
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_4493008c02e5438f9213540c254bd076~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(5).png"
+                    alt="Heart Icon">
+                <p>All our efforts are made possible only because of your support.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_f9080a11c6eb4d41929e85c098f91d53~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(9).png"
+                    alt="Tax Icon">
+                <p>Your donations are tax exempted under 80G of the Indian Income Tax Act.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_6aa6d0167b084267b90e78b554d6b5b9~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(8).png"
+                    alt="Secure Icon">
+                <p>Your donation transactions are completely safe and secure.</p>
+            </div>
+        </div>
+
+
+        <div class="footer-main">
+            <div class="footer-left">
+                <h3>SKGST NGO</h3>
+                <p><strong>Email:</strong> connect@marpu.org</p>
+                <p><strong>Phone:</strong> 79997801001</p>
+                <p><strong>Charity ID:</strong> AAGTM4991A</p>
+                <img src="images/logo.png" alt="Logo" class="footer-logo">
+            </div>
+
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">About SKGST NGO</a></li>
+                    <li><a href="ourwork.html">Our Work</a></li>
+                    <li><a href="campaings.html">Campaings</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2020 by SKGST_NGO | <a href="TCRp.html">Terms, Conditions & Refund Policy</a> | <a
+                    href="Privacy.html">Privacy
+                    Policy</a></p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+    <script>
+        // Contact form script
+        document.getElementById("contactForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const btnText = document.getElementById("btnText");
+            const btnLoader = document.getElementById("btnLoader");
+            btnText.textContent = "Submitting...";
+            btnLoader.style.display = "inline-block"; // Show spinner
+
+            const formData = {
+                name: this.name.value,
+                email: this.email.value,
+                Mobile: this.Mobile.value,
+                message: this.message.value
+            };
+
+            const responseMessage = document.getElementById("responseMessage");
+
+            try {
+                const response = await fetch("send.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    responseMessage.style.color = "green";
+                    responseMessage.textContent = result.message || "Message sent successfully!";
+                    this.reset(); // Clear the form
+                } else {
+                    responseMessage.style.color = "red";
+                    responseMessage.textContent = result.message || "Error sending message.";
+                }
+
+            } catch (error) {
+                responseMessage.style.color = "red";
+                responseMessage.textContent = "An unexpected error occurred.";
+                console.error("Error:", error);
+            }
+
+            // Restore button after request
+            btnText.textContent = "SUBMIT";
+            btnLoader.style.display = "none";
+        });
+
+
+
+        // scrolling effect for nav bar
+
+        let lastScrollTop = 0;
+        const nav = document.querySelector("nav");
+        const section1 = document.querySelector(".section1");
+
+        window.addEventListener("scroll", () => {
+            const section1Bottom = section1.getBoundingClientRect().bottom;
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Trigger effect after scrolling past 1/8 of payment section
+            if (section1Bottom <= window.innerHeight / 2) {
+                if (currentScroll > lastScrollTop) {
+                    // Scrolling down
+                    // nav.style.top = "-100px";
+                    nav.style.top = "-400px";
+                } else {
+                    // Scrolling up
+                    nav.style.top = "0";
+                }
+            } else {
+                // Always show nav while in first half of section1
+                nav.style.top = "0";
+            }
+
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+
+        // for auto adjusting margin-top for section1 according to nav height
+
+        function adjustSectionMargin() {
+            const navbar = document.getElementById("navbar");
+            const section = document.getElementById("section1");
+
+            if (navbar && section) {
+                const navHeight = navbar.offsetHeight;
+                section.style.marginTop = navHeight + "px";
+            }
+        }
+
+        window.addEventListener("load", adjustSectionMargin);
+        window.addEventListener("resize", adjustSectionMargin);
+    </script>
+</body>
+
+</html>

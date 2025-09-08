@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaings | SKGST NGO</title>
+    <link rel="icon" type="image/svg+xml" href="/images/foundation_icon.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #1b7300;
+            --accent-color: #94d2bd;
+            --light-bg: #f0fdfa;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+
+        .hero {
+            position: relative;
+            /* padding: 5rem 2rem 2rem; */
+            /* text-align: center; */
+            height: 65vh;
+            width: 100vw;
+            margin-top: 95px;
+            background: #191a197a;
+            color: white;
+            padding: 10% 10%;
+            text-align: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://www.nea.org/sites/default/files/styles/1920wide/public/2020-07/2020-Join-a-campaign-3840x2160_0.jpg.webp?itok=2D_xk1CJ") no-repeat center/cover;
+            background-attachment: fixed;
+            /* opacity: 0.7; */
+            /* Adjust this value for desired transparency */
+            z-index: -1;
+
+        }
+
+
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: rgb(39, 255, 85);
+            margin-bottom: 1rem;
+
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section h2 {
+            color: #02c52c;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .campaign-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(45% - 20px);
+            max-width: 500px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            color: #02c52c;
+        }
+
+        .card p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 3rem 2rem;
+            background: #e6f7f4;
+            text-align: center;
+        }
+
+        .gallery-section h2 {
+            color: var(--main-color);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 80%;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+
+        .close,
+        .prev,
+        .next {
+            position: absolute;
+            top: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+        }
+
+        .close {
+            right: 20px;
+        }
+
+        .prev {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* responsive design from here onwards */
+        /* responsive design here onwards */
+
+        @media screen and (max-width: 590px) {
+
+            .prev {
+                display: none;
+            }
+
+            .next {
+                display: none;
+            }
+
+            .close {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(1, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 900px) {
+
+            .close,
+            .prev,
+            .next {
+                position: absolute;
+                top: 20px;
+                font-size: 20px;
+                color: #fff;
+                cursor: pointer;
+                user-select: none;
+                padding: 10px 8px;
+                background: rgba(0, 0, 0, 0.5);
+                border-radius: 4px;
+            }
+
+            .prev {
+                left: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .next {
+                right: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .close {
+                right: 0px;
+            }
+
+        }
+
+        @media screen and (max-width: 620px) {
+            .hero::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("https://www.nea.org/sites/default/files/styles/1920wide/public/2020-07/2020-Join-a-campaign-3840x2160_0.jpg.webp?itok=2D_xk1CJ") no-repeat center/cover;
+                background-attachment: fixed;
+                /* opacity: 0.7; */
+                /* Adjust this value for desired transparency */
+                /* background-position: center auto; */
+                /* Shift down by 100px */
+                z-index: -1;
+
+            }
+        }
+
+        @media screen and (max-width: 849px) {
+            .hero {
+                position: relative;
+                /* padding: 5rem 2rem 2rem; */
+                /* text-align: center; */
+                height: 80vh;
+                width: 100vw;
+                margin-top: 95px;
+                background: #191a197a;
+                color: white;
+                padding: 50% 10%;
+                text-align: center;
+            }
+
+
+        }
+
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .gallery {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <nav id="navbar">
+            <img src="images/logo.png" alt="logo" />
+            <div class="nav_button">
+                <li><a href="index.html" class="nav-link">ABOUT</a></li>
+                <li><a href="ourwork.html" class="nav-link">OUR WORK</a></li>
+                <li><a href="campaings.html" class="nav-link">CAMPAINGS</a></li>
+                <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
+                <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
+                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
+                <li><button onclick="window.location.href='login.php'">Login</button></li>
+
+            </div>
+        </nav>
+
+        <!-- moblie nav from here onward -->
+        <!-- Hamburger Toggle Icon -->
+        <div id="hamburger" class="nav-toggle" onclick="openMobileNav()">☰</div>
+
+        <!-- Overlay (clicking closes mobile nav) -->
+        <div id="navOverlay" class="nav-overlay" onclick="closeMobileNav()"></div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <div class="close-btn" onclick="closeMobileNav()">×</div>
+            <img src="images/logo.png" alt="Logo" class="logo" />
+            <ul>
+                <li><a href="index.html" onclick="closeMobileNav()">ABOUT</a></li>
+                <li><a href="ourwork.html" onclick="closeMobileNav()">OUR WORK</a></li>
+                <li><a href="campaings.html" onclick="closeMobileNav()">CAMPAIGNS</a></li>
+                <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
+                <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
+                <div>
+                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
+
+                </div>
+                <div>
+                    <a href="login.php" class="donate-btn" onclick="closeMobileNav()">Login</a>
+
+                </div>
+
+
+
+            </ul>
+        </div>
+
+    </header>
+
+    <section class="hero" id="hero">
+        <h1>Our Campaigns</h1>
+        <p>Join our mission to create impactful change across communities through thoughtful initiatives.</p>
+    </section>
+
+    <div class="section">
+        <h2 style="text-align: center;">Transforming Lives Through Purposeful Campaigns</h2>
+        <p>At SKGST NGO, our mission goes beyond charity — we strive to bring sustainable change through
+            meticulously planned and compassion-driven campaigns. Every campaign is a reflection of our unwavering
+            commitment to serve humanity and uplift the underprivileged.</p>
+
+        <p>From educational empowerment in remote regions to massive blood donation drives in urban communities, our
+            campaigns are designed with heart and impact in mind. We listen, we engage, and most importantly, we act —
+            swiftly and transparently.</p>
+
+        <p>We believe in building a better society by uniting individuals who are ready to take initiative and step up
+            for social causes. Each of our campaigns embodies hope, dedication, and collective action that transcends
+            boundaries.</p>
+    </div>
+
+    <div class="section">
+        <h2>Key Campaign Highlights</h2>
+        <div class="campaign-cards">
+            <div class="card card fade-in">
+                <h3>🩸 Blood Donation Drives</h3>
+                <p>Saving lives one pint at a time, we’ve organized over 200+ blood donation drives across hospitals and
+                    public centers, contributing to emergency needs and building a culture of regular donors.</p>
+            </div>
+            <div class="card card fade-in">
+                <h3>📚 Books for All</h3>
+                <p>Our “Books for All” campaign distributes thousands of textbooks, notebooks, and learning material to
+                    children in rural and slum areas, nurturing dreams of young minds that dare to dream big.</p>
+            </div>
+            <div class="card card fade-in">
+                <h3>👵 Elderly Care Initiatives</h3>
+                <p>Through our “Respect Age” campaign, we connect with senior citizens in need, providing emotional
+                    support, basic medical aid, and organizing community engagement programs to combat loneliness and
+                    abandonment.</p>
+            </div>
+            <div class="card card fade-in">
+                <h3>🌳 Environment & Sustainability</h3>
+                <p>With our “Green Breath” initiative, we promote tree plantation drives, waste management awareness,
+                    and eco-conscious living among schools and communities.</p>
+            </div>
+            <div class="card card fade-in">
+                <h3>🚰 Clean Water Access</h3>
+                <p>In remote villages where water scarcity is still a harsh reality, we install handpumps and filters
+                    through our “Pani Ki Muskan” campaign to ensure safe drinking water for all.</p>
+            </div>
+            <div class="card card fade-in">
+                <h3>🎓 Career Mentorship for Youth</h3>
+                <p>Our “Udaan” campaign empowers underprivileged youth through career counseling, skill development
+                    workshops, and mentorship programs, guiding them toward meaningful employment and higher education
+                    opportunities.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="gallery-section fade-in">
+        <h2>Campaign Photo Gallery</h2>
+        <div class="gallery">
+            <img src="images/dummy_img1.png" alt="Gallery Image 1" class="gallery-item">
+            <img src="images/dummy_img2.jpg" alt="Gallery Image 2" class="gallery-item">
+            <img src="images/dummy_img1.png" alt="Gallery Image 3" class="gallery-item">
+            <img src="images/dummy_img2.jpg" alt="Gallery Image 4" class="gallery-item">
+            <img src="images/dummy_img1.png" alt="Gallery Image 5" class="gallery-item">
+            <img src="images/dummy_img2.jpg" alt="Gallery Image 6" class="gallery-item">
+            <img src="images/dummy_img1.png" alt="Gallery Image 7" class="gallery-item">
+            <img src="images/dummy_img2.jpg" alt="Gallery Image 8" class="gallery-item">
+        </div>
+    </section>
+    <div id="lightbox">
+        <span class="close">&times;</span>
+        <span class="prev">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Expanded Image">
+        <span class="next">&#10095;</span>
+    </div>
+
+    <div class="section">
+        <h2>Join the Movement</h2>
+        <p>Campaigns are not just about funding, they are about fueling hope. When you become part of a SKGST NGO
+            campaign, you become a changemaker — a beacon of kindness in someone’s life.</p>
+
+        <p>Whether you are a student, a professional, a homemaker, or a retiree, there is always a campaign waiting for
+            your touch. Together, let’s stand for dignity, health, education, and equality.</p>
+
+        <p>Explore our live campaigns, volunteer your time, or support us through donations. Every little bit counts.
+            Every effort makes a difference. And every person, when empowered, can change the world.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_4493008c02e5438f9213540c254bd076~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(5).png"
+                    alt="Heart Icon">
+                <p>All our efforts are made possible only because of your support.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_f9080a11c6eb4d41929e85c098f91d53~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(9).png"
+                    alt="Tax Icon">
+                <p>Your donations are tax exempted under 80G of the Indian Income Tax Act.</p>
+            </div>
+            <div class="footer-message">
+                <img src="https://static.wixstatic.com/media/2cdbfc_6aa6d0167b084267b90e78b554d6b5b9~mv2.png/v1/fill/w_44,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/13%2C3%20(8).png"
+                    alt="Secure Icon">
+                <p>Your donation transactions are completely safe and secure.</p>
+            </div>
+        </div>
+
+
+        <div class="footer-main">
+            <div class="footer-left">
+                <h3>SKGST_NGO</h3>
+                <p><strong>Email:</strong> connect@marpu.org</p>
+                <p><strong>Phone:</strong> 79997801001</p>
+                <p><strong>Charity ID:</strong> AAGTM4991A</p>
+                <img src="images/logo.png" alt="Logo" class="footer-logo">
+            </div>
+
+            <div class="footer-right">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">About SKGST_NGO</a></li>
+                    <li><a href="ourwork.html">Our Work</a></li>
+                    <li><a href="campaings.html">Campaings</a></li>
+                    <li><a href="getinvolved.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="social-icons">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2020 by SKGST_NGO | <a href="TCRp.html">Terms, Conditions & Refund Policy</a> | <a
+                    href="Privacy.html">Privacy
+                    Policy</a></p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+    <script>
+        // Scroll animation
+        const fadeIns = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        fadeIns.forEach(el => {
+            observer.observe(el);
+        });
+
+
+        // Add a simple fade effect for image loading
+        document.querySelectorAll('.gallery img').forEach((img) => {
+            img.style.opacity = 0;
+            img.style.transition = 'opacity 1s ease-in-out';
+
+            const fadeIn = () => {
+                img.style.opacity = 1;
+            };
+
+            if (img.complete) {
+                // Image was loaded from cache
+                fadeIn();
+            } else {
+                // Image loads normally
+                img.onload = fadeIn;
+            }
+        });
+
+
+        // Lightbox logic
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const galleryItems = document.querySelectorAll(".gallery-item");
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImg = document.getElementById("lightbox-img");
+            const closeBtn = document.querySelector(".close");
+            const prevBtn = document.querySelector(".prev");
+            const nextBtn = document.querySelector(".next");
+
+            let currentIndex = 0;
+            let zoomed = false;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                lightbox.style.display = "flex";
+                lightboxImg.src = galleryItems[currentIndex].src;
+                lightboxImg.style.transform = "scale(1)";
+                zoomed = false;
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                lightbox.style.display = "none";
+                lightboxImg.style.transform = "scale(1)";
+                zoomed = false;
+                document.body.style.overflow = "";
+            }
+
+            function changeImage(direction) {
+                currentIndex += direction;
+                if (currentIndex < 0) currentIndex = galleryItems.length - 1; if (currentIndex >= galleryItems.length) currentIndex =
+                    0;
+                lightboxImg.src = galleryItems[currentIndex].src;
+                lightboxImg.style.transform = "scale(1)";
+                zoomed = false;
+            }
+
+            lightboxImg.addEventListener("click", function (event) {
+                if (!zoomed) {
+                    const rect = lightboxImg.getBoundingClientRect();
+                    const offsetX = event.clientX - rect.left;
+                    const offsetY = event.clientY - rect.top;
+                    const percentX = (offsetX / rect.width) * 100;
+                    const percentY = (offsetY / rect.height) * 100;
+
+                    lightboxImg.style.transformOrigin = `${percentX}% ${percentY}%`;
+                    lightboxImg.style.transform = "scale(2)";
+                } else {
+                    lightboxImg.style.transform = "scale(1)";
+                    lightboxImg.style.transformOrigin = "center";
+                }
+                zoomed = !zoomed;
+            });
+
+            galleryItems.forEach((item, index) => {
+                item.addEventListener("click", function () {
+                    openLightbox(index);
+                });
+            });
+
+            lightbox.addEventListener("click", function (event) {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            closeBtn.addEventListener("click", closeLightbox);
+
+            nextBtn.addEventListener("click", function (event) {
+                event.stopPropagation();
+                changeImage(1);
+            });
+
+            prevBtn.addEventListener("click", function (event) {
+                event.stopPropagation();
+                changeImage(-1);
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (lightbox.style.display === "flex") {
+                    if (event.key === "ArrowRight") changeImage(1);
+                    if (event.key === "ArrowLeft") changeImage(-1);
+                    if (event.key === "Escape") closeLightbox();
+                }
+            });
+        });
+
+        // scrolling effect for nav bar
+
+        let lastScrollTop = 0;
+        const nav = document.querySelector("nav");
+        const section1 = document.querySelector(".section");
+
+        window.addEventListener("scroll", () => {
+            const section1Bottom = section1.getBoundingClientRect().bottom;
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Trigger effect after scrolling past 1/8 of payment section
+            if (section1Bottom <= window.innerHeight / 1) {
+                if (currentScroll > lastScrollTop) {
+                    // Scrolling down
+                    // nav.style.top = "-100px";
+                    nav.style.top = "-400px";
+                } else {
+                    // Scrolling up
+                    nav.style.top = "0";
+                }
+            } else {
+                // Always show nav while in first half of section1
+                nav.style.top = "0";
+            }
+
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // for auto adjusting margin-top for section1 according to nav height
+
+        function adjustSectionMargin() {
+            const navbar = document.getElementById("navbar");
+            const section = document.getElementById("hero");
+
+            if (navbar && section) {
+                const navHeight = navbar.offsetHeight;
+                section.style.marginTop = navHeight + "px";
+            }
+        }
+
+        window.addEventListener("load", adjustSectionMargin);
+        window.addEventListener("resize", adjustSectionMargin);
+    </script>
+</body>
+
+</html>
