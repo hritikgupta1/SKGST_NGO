@@ -171,12 +171,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="mb-2">
-                <input class="form-control <?= isset($errors['dob']) ? 'is-invalid' : '' ?>"
-                    type="text" name="dob" placeholder="DOB (dd/mm/yyyy)"
-                    value="<?= isset($dob) ? htmlspecialchars($dob) : '' ?>" required
-                    onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
+                <input
+                    class="form-control <?= isset($errors['dob']) ? 'is-invalid' : '' ?>"
+                    type="text"
+                    name="dob"
+                    placeholder="DOB (dd/mm/yyyy)"
+                    value="<?= isset($dob) ? htmlspecialchars($dob) : '' ?>"
+                    required
+                    onfocus="this.type='date'; this.max = new Date().toISOString().split('T')[0];"
+                    onblur="if(!this.value)this.type='text'">
                 <?php if (isset($errors['dob'])): ?><div class="error"><?= $errors['dob'] ?></div><?php endif; ?>
             </div>
+
 
             <div class="mb-2">
                 <input class="form-control <?= isset($errors['occupation']) ? 'is-invalid' : '' ?>"
