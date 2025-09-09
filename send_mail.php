@@ -51,19 +51,18 @@ function sendOTP($toEmail, $toName, $otp)
 //     $message = "
 //     <html>
 //     <head>
-//         <title>Dubai Space - OTP</title>
+//         <title>SKGST - OTP</title>
 //     </head>
 //     <body>
 //         <h3>Hi $toName,</h3>
-//         <p>Your OTP is: <b>$otp</b></p>
-//         <p>It is valid for <b>5 minutes</b>.</p>
+//         <p>Your OTP is: <b>$otp</b>. It is valid for <b>5 minutes</b>.</p>
 //     </body>
 //     </html>";
 
 //     // Email headers
 //     $headers  = "MIME-Version: 1.0\r\n";
 //     $headers .= "Content-type: text/html; charset=UTF-8\r\n";
-//     $headers .= "From: Dubai Space <noreply@skgst.in>\r\n";
+//     $headers .= "From: SKGST <noreply@skgst.in>\r\n";
 //     // $headers .= "Cc: acpitzone@gmail.com\r\n";
 //     // $headers .= "Bcc: praveshgulati@gmail.com\r\n";
 
@@ -75,3 +74,5 @@ function sendOTP($toEmail, $toName, $otp)
 //     }
 // }
 ?>
+
+
