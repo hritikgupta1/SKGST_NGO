@@ -74,10 +74,22 @@ if (isset($_POST['resend']) && isset($_SESSION['pending_user'])) {
 }
 ?>
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Verify OTP</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @media (max-width:768px) {
+            .p-4 {
+                padding: 1.5rem !important;
+                margin: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body class="d-flex align-items-center justify-content-center" style="min-height:100vh;background:#f7f7f7;">
     <div class="card p-4" style="max-width:400px;">
         <h4 class="text-center">Enter OTP</h4>
@@ -115,4 +127,5 @@ if (isset($_POST['resend']) && isset($_SESSION['pending_user'])) {
         }, 1000);
     </script>
 </body>
+
 </html>
