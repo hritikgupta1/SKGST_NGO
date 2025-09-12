@@ -105,6 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background: #1abc9c;
         }
 
+        .toggle-password {
+            cursor: pointer;
+        }
+
         .error {
             color: #dc3545;
             font-size: 0.875rem;
@@ -209,17 +213,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (isset($errors['role'])): ?><div class="error"><?= $errors['role'] ?></div><?php endif; ?>
             </div>
 
-            <div class="mb-3">
-                <input class="form-control <?= isset($errors['password']) ? 'is-invalid' : '' ?>"
-                    type="password" name="password" placeholder="Password" required>
-                <?php if (isset($errors['password'])): ?><div class="error"><?= $errors['password'] ?></div><?php endif; ?>
+            <div class="mb-3 input-group">
+                <input class="form-control <?= isset($errors['password']) ? 'is-invalid' : '' ?>" type="password" name="password" id="password" placeholder="Set Password" required>
+                <button class="btn btn-outline-secondary toggle-password" type="button">👁️</button>
             </div>
+            <?php if (isset($errors['password'])): ?><div class="error"><?= $errors['password'] ?></div><?php endif; ?>
 
             <button class="btn btn-primary w-100" type="submit">Register</button>
         </form>
 
         <p class="text-center mt-2">Already registered? <a href="login.php">Login here</a></p>
     </div>
+
+    <script>
+        // Show/Hide password toggle
+        document.querySelector(".toggle-password").addEventListener("click", function() {
+            let pwd = document.getElementById("password");
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                this.textContent = "🙈";
+            } else {
+                pwd.type = "password";
+                this.textContent = "👁️";
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -15,6 +15,11 @@
         <div class="collapse navbar-collapse" id="adminNavbar">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="admin.php"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="member_details.php"><i class="bi bi-person-lines-fill"></i> Member Details</a>
+                </li>
+
                 <li class="nav-item"><a class="nav-link" href="manage_users.php"><i class="bi bi-people"></i> Manage Users</a></li>
                 <li class="nav-item"><a class="nav-link" href="reports.php"><i class="bi bi-file-earmark-bar-graph"></i> Reports</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
@@ -43,3 +48,5 @@
         border-color: rgba(255, 255, 255, 0.5);
     }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

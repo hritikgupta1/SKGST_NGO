@@ -25,3 +25,5 @@
   .team-nav .navbar-brand, .team-nav .nav-link { color: #fff !important; font-weight: 500; }
   .team-nav .nav-link:hover { color: #2c3e50 !important; }
 </style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

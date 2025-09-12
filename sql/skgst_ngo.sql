@@ -24,6 +24,19 @@ CREATE TABLE volunteer_form (
     submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS businesses;
+CREATE TABLE businesses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    business_name VARCHAR(150) NOT NULL,
+    business_details TEXT NOT NULL,
+    business_address VARCHAR(255) NOT NULL,
+    business_contact VARCHAR(10) NOT NULL,
+    business_email VARCHAR(150) NOT NULL,
+    business_pic VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
@@ -55,9 +68,3 @@ CREATE TABLE donations (
     status VARCHAR(50) DEFAULT 'Success',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-
-
-
-
