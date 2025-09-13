@@ -1,11 +1,11 @@
 <?php
 // member_nav.php
 ?>
-<nav class="navbar navbar-expand-lg member-nav">
+<nav class="navbar navbar-expand-lg navbar-dark member-nav">
   <div class="container">
     <a class="navbar-brand fw-bold" href="member.php">MemberArea</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#memberNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#memberNavbar" aria-controls="memberNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -36,6 +36,21 @@
   .member-nav .nav-link:hover {
     color: #f39c12 !important;
   }
+
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<script>
+  // Auto-close navbar on mobile link click
+  document.querySelectorAll('#memberNavbar .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const navbar = document.querySelector('#memberNavbar');
+      if (navbar.classList.contains('show')) {
+        new bootstrap.Collapse(navbar).toggle();
+      }
+    });
+  });
+</script>

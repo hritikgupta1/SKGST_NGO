@@ -55,6 +55,29 @@ CREATE TABLE users (
     UNIQUE KEY unique_email_role (email, role)
 );
 
+INSERT INTO users 
+(name, email, phone, address, gender, dob, occupation, qualification, password, role)
+VALUES
+('Admin User', 'admin@gmail.com', '1234567890', 'Head Office', 'Male', '1990-01-01', 'Administrator', 'MBA', 'Admin@1234', 'Admin');
+
+
+DROP TABLE IF EXISTS pending_user;
+CREATE TABLE pending_user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    gender ENUM('Male','Female','Other') NOT NULL,
+    dob DATE NOT NULL,
+    occupation VARCHAR(100) NOT NULL,
+    qualification VARCHAR(100) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    role VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_email_role (email, role)
+);
+
 DROP TABLE IF EXISTS donations;
 CREATE TABLE donations (
     id INT AUTO_INCREMENT PRIMARY KEY,

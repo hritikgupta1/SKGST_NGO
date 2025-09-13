@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['otp'])) {
         // Success
         elseif ($otp == $user['otp']) {
             if ($type == 'register') {
-                $insert = $pdo->prepare("INSERT INTO users 
+                $insert = $pdo->prepare("INSERT INTO pending_user 
                     (name, email, phone, address, gender, dob, occupation, qualification, password, role)
                     VALUES (:name, :email, :phone, :address, :gender, :dob, :occupation, :qualification, :password, :role)");
                 $insert->execute([
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['otp'])) {
                     ':password' => $user['password'],
                     ':role' => $user['role']
                 ]);
-                $message = "Registration complete! <a href='login.php'>Login</a>";
+                $message = "Email verified successfully! Your registration is under review.";
             } else {
                 // forgot password reset
                 $update = $pdo->prepare("UPDATE users SET password=:password WHERE email=:email AND role=:role");
@@ -104,6 +104,9 @@ if (isset($_POST['resend']) && isset($_SESSION['pending_user'])) {
         <form method="POST">
             <button name="resend" class="btn btn-link w-100" id="resendBtn" disabled>Resend OTP</button>
         </form>
+        <div class="text-center mt-3">
+            <a href="login.php" class="btn btn-outline-primary w-100">← Back to Login</a>
+        </div>
     </div>
 
     <script>

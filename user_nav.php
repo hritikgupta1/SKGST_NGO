@@ -47,4 +47,17 @@
   
 </style>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(function(navLink) {
+    navLink.addEventListener('click', function() {
+      let navbar = document.querySelector('#userNavbar');
+      let bsCollapse = bootstrap.Collapse.getInstance(navbar);
+      if (bsCollapse) {
+        bsCollapse.hide();
+      }
+    });
+  });
+</script>
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->

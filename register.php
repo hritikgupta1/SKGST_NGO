@@ -37,8 +37,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($errors)) {
         try {
             // Check duplicate email+role
-            $check = $pdo->prepare("SELECT id FROM users WHERE email = :email AND role = :role");
-            $check->execute([':email' => $email, ':role' => $role]);
+            $check = $pdo->prepare("
+                SELECT id FROM users WHERE email = :email1 AND role = :role1
+                UNION
+                SELECT id FROM pending_user WHERE email = :email2 AND role = :role2
+            ");
+            $check->execute([
+                ':email1' => $email,
+                ':role1'  => $role,
+                ':email2' => $email,
+                ':role2'  => $role
+            ]);
             if ($check->fetch()) {
                 $errors['email'] = "This email is already registered for the selected role.";
             } else {
