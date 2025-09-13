@@ -31,23 +31,26 @@
 <style>
   .user-nav {
     background: #3498db;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
-  .user-nav .navbar-brand, 
+
+  .user-nav .navbar-brand,
   .user-nav .nav-link {
     color: #fff !important;
     font-weight: 500;
   }
+
   .user-nav .nav-link:hover {
     color: #ffd700 !important;
   }
+
   .navbar-toggler {
-    border-color: rgba(255,255,255,0.5);
+    border-color: rgba(255, 255, 255, 0.5);
   }
-  
 </style>
 
-<script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
   document.querySelectorAll('.navbar-nav .nav-link').forEach(function(navLink) {
     navLink.addEventListener('click', function() {
       let navbar = document.querySelector('#userNavbar');
@@ -58,6 +61,3 @@
     });
   });
 </script>
-
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->

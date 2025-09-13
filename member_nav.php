@@ -42,8 +42,7 @@
   }
 </style>
 
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
-<script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
   // Auto-close navbar on mobile link click
   document.querySelectorAll('#memberNavbar .nav-link').forEach(link => {
     link.addEventListener('click', () => {
