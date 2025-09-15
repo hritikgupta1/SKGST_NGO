@@ -12,12 +12,13 @@ $success = "";
 
 // ===== Handle Edit =====
 if (isset($_POST['edit_member'])) {
-    $id = $_POST['id'];
-    $name = trim($_POST['business_name']);
-    $email = trim($_POST['business_email']);
-    $phone = trim($_POST['business_contact']);
+    $id      = $_POST['id'];
+    $name    = trim($_POST['business_name']);
+    $email   = trim($_POST['business_email']);
+    $phone   = trim($_POST['business_contact']);
     $address = trim($_POST['business_address']);
-    $details = trim($_POST['business_details']); // new field
+    $details = trim($_POST['business_details']);
+    $status  = $_POST['status'] ?? 0;
     $old_pic = $_POST['old_pic'];
 
     // --- Required validation ---
@@ -73,9 +74,9 @@ if (isset($_POST['edit_member'])) {
     // --- Update DB if no errors ---
     if (empty($errors)) {
         $stmt = $pdo->prepare("UPDATE businesses 
-            SET business_name=?, business_email=?, business_contact=?, business_address=?, business_details=?, business_pic=? 
+            SET business_name=?, business_email=?, business_contact=?, business_address=?, business_details=?, business_pic=?, status=? 
             WHERE id=?");
-        $stmt->execute([$name, $email, $phone, $address, $details, $newPic, $id]);
+        $stmt->execute([$name, $email, $phone, $address, $details, $newPic, $status, $id]);
 
         $success = "Member updated successfully!";
     }
@@ -114,26 +115,20 @@ $members = $stmt->fetchAll();
             max-width: 100vw;
         }
 
-        /* Make table container scrollable on small screens */
         .table-responsive-wrapper {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             width: 100%;
         }
 
-        /* Card-style view on very small screens */
-        /* Card-style view on small screens */
         @media (max-width: 920px) {
             table.table {
-                /* display: block; */
                 width: 100%;
                 border: 0;
             }
-
             table.table thead {
                 display: none;
             }
-
             table.table tbody tr {
                 display: block;
                 margin-bottom: 1rem;
@@ -142,31 +137,24 @@ $members = $stmt->fetchAll();
                 padding: 0.5rem 1rem;
                 background: #fff;
             }
-
             table.table tbody td {
                 display: block;
-                /* make each cell a row */
                 text-align: justify;
                 padding: 0.4rem 0;
                 border: 0;
                 word-break: break-word;
             }
-
             table.table tbody td::before {
                 content: attr(data-label);
                 font-weight: 600;
                 display: block;
                 margin-bottom: 0.2rem;
             }
-
-            /* Image responsive */
             table.table tbody td img {
                 max-width: 100%;
                 height: auto;
                 border-radius: 5px;
             }
-
-            /* Actions buttons stacked and centered */
             table.table tbody td[data-label="Actions"] .d-flex {
                 flex-direction: row;
                 justify-content: flex-start;
@@ -203,6 +191,7 @@ $members = $stmt->fetchAll();
                         <th>Phone</th>
                         <th>Address</th>
                         <th>Business Details</th>
+                        <th>Status</th>
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -216,6 +205,15 @@ $members = $stmt->fetchAll();
                             <td data-label="Phone"><?= htmlspecialchars($m['business_contact']) ?></td>
                             <td data-label="Address"><?= htmlspecialchars($m['business_address']) ?></td>
                             <td data-label="Business Details"><?= htmlspecialchars($m['business_details']) ?></td>
+                            <td data-label="Status">
+                                <?php if ($m['status'] == 1): ?>
+                                    <span class="badge bg-success">Approved</span>
+                                <?php elseif ($m['status'] == 2): ?>
+                                    <span class="badge bg-danger">Rejected</span>
+                                <?php else: ?>
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                <?php endif; ?>
+                            </td>
                             <td data-label="Image">
                                 <?php if (!empty($m['business_pic'])): ?>
                                     <img src="uploads/<?= htmlspecialchars($m['business_pic']) ?>"
@@ -235,6 +233,7 @@ $members = $stmt->fetchAll();
                                         data-phone="<?= htmlspecialchars($m['business_contact']) ?>"
                                         data-address="<?= htmlspecialchars($m['business_address']) ?>"
                                         data-details="<?= htmlspecialchars($m['business_details']) ?>"
+                                        data-status="<?= $m['status'] ?>"
                                         data-pic="<?= htmlspecialchars($m['business_pic']) ?>">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </button>
@@ -245,12 +244,10 @@ $members = $stmt->fetchAll();
                                     </button>
                                 </div>
                             </td>
-
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
         </div>
     </div>
 
@@ -286,6 +283,14 @@ $members = $stmt->fetchAll();
                     <div class="mb-3">
                         <label>Business Details</label>
                         <textarea name="business_details" id="edit_details" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label>Status</label>
+                        <select name="status" id="edit_status" class="form-control">
+                            <option value="0">Pending</option>
+                            <option value="1">Approved</option>
+                            <option value="2">Rejected</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label>Image (leave blank to keep old)</label>
@@ -345,6 +350,7 @@ $members = $stmt->fetchAll();
                 document.getElementById('edit_phone').value = btn.dataset.phone;
                 document.getElementById('edit_address').value = btn.dataset.address;
                 document.getElementById('edit_details').value = btn.dataset.details;
+                document.getElementById('edit_status').value = btn.dataset.status;
                 document.getElementById('edit_old_pic').value = btn.dataset.pic;
                 document.getElementById('edit_preview').src = "uploads/" + btn.dataset.pic;
                 new bootstrap.Modal(document.getElementById('editModal')).show();
@@ -360,5 +366,4 @@ $members = $stmt->fetchAll();
         });
     </script>
 </body>
-
 </html>

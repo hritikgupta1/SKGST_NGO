@@ -33,6 +33,7 @@ CREATE TABLE businesses (
     business_contact VARCHAR(10) NOT NULL,
     business_email VARCHAR(150) NOT NULL,
     business_pic VARCHAR(255) NOT NULL,
+    status TINYINT(1) NOT NULL DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
