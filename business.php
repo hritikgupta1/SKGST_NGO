@@ -135,7 +135,7 @@ $businesses = $stmt->fetchAll();
                 <li><a href="business.php" class="nav-link">BUSINESS</a></li>
                 <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
                 <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
-                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
+                <li><button onclick="window.location.href='donate.php'">DONATE</button></li>
                 <li><button onclick="window.location.href='login.php'">Login</button></li>
 
             </div>
@@ -160,7 +160,7 @@ $businesses = $stmt->fetchAll();
                 <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
                 <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
                 <div>
-                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
+                    <a href="donate.php" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
 
                 </div>
                 <div>

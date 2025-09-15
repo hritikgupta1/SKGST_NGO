@@ -1,8 +1,14 @@
 <?php
 session_start();
+
 require 'db.php';
 
 $errors = [];
+
+// If user came from another page (like donate.php), save it in session
+if (isset($_GET['redirect'])) {
+    $_SESSION['redirect_after_login'] = $_GET['redirect'];
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST['email']);
@@ -22,7 +28,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $stmt->fetch();
 
             if ($user) {
-                $_SESSION['user'] = $user;
+                // Save the full row in session (not just role)
+                $_SESSION['user'] = [
+                    'id'          => $user['id'],
+                    'name'        => $user['name'],
+                    'email'       => $user['email'],
+                    'phone'       => $user['phone'],
+                    'address'     => $user['address'],
+                    'gender'      => $user['gender'],
+                    'dob'         => $user['dob'],
+                    'occupation'  => $user['occupation'],
+                    'qualification' => $user['qualification'],
+                    'role'        => $user['role']
+                ];
+
+                // Redirect (or back to donate if stored)
+                if (isset($_SESSION['redirect_after_login'])) {
+                    $redirectPage = $_SESSION['redirect_after_login'];
+                    unset($_SESSION['redirect_after_login']);
+                    header("Location: " . $redirectPage);
+                    exit;
+                }
 
                 // Redirect by role
                 if ($role == "Admin") header("Location: admin.php");
@@ -43,23 +69,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { background: linear-gradient(135deg, #3498db, #2980b9); min-height: 100vh; }
-        .card { border-radius: 20px; box-shadow: 0 8px 25px rgba(0, 0, 0, .2); }
-        .form-control, .form-select { border-radius: 10px; }
-        .btn-success, .btn-outline-primary { border-radius: 10px; }
-        .toggle-password { cursor: pointer; }
-        .error { color: #dc3545; font-size: 0.875rem; margin-top: 0.25rem; }
-        @media (max-width:768px) { .card { margin: 10px; } }
+        body {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            min-height: 100vh;
+        }
+
+        .card {
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, .2);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+        }
+
+        .btn-success,
+        .btn-outline-primary {
+            border-radius: 10px;
+        }
+
+        .toggle-password {
+            cursor: pointer;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width:768px) {
+            .card {
+                margin: 10px;
+            }
+        }
     </style>
 </head>
 
 <body class="d-flex align-items-center justify-content-center">
+
     <div class="card p-4 w-100" style="max-width: 400px;">
         <h3 class="text-center mb-3">User Login</h3>
 
@@ -113,4 +169,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     </script>
 </body>
+
 </html>

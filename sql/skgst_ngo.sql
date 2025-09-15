@@ -82,6 +82,8 @@ CREATE TABLE pending_user (
 DROP TABLE IF EXISTS donations;
 CREATE TABLE donations (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,  -- Link to users table
+    type ENUM('donation','membership') NOT NULL, -- type from form
     name VARCHAR(100),
     email VARCHAR(100) NOT NULL,
     phone VARCHAR(15) NOT NULL,
@@ -90,5 +92,7 @@ CREATE TABLE donations (
     amount DECIMAL(10,2) NOT NULL,
     payment_id VARCHAR(100) NOT NULL,
     status VARCHAR(50) DEFAULT 'Success',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+

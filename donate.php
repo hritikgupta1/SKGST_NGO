@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+// If not logged in, remember this page and redirect to login
+if (!isset($_SESSION['user'])) {
+    $_SESSION['redirect_after_login'] = 'donate.php';
+    header("Location: login.php");
+    exit;
+}
+
+// Assign logged-in user data for prefill
+$userData = $_SESSION['user'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +25,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
+    <!-- prefill script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const user = <?php echo json_encode($userData); ?>;
+            if (user) {
+                document.getElementById("name").value = user.name || "";
+                document.getElementById("email").value = user.email || "";
+                document.getElementById("phone").value = user.phone || "";
+                document.getElementById("address").value = user.address || "";
+            }
+        });
+    </script>
     <style>
         .container {
             display: flex;
@@ -201,54 +227,56 @@
 </head>
 
 <body>
+
     <header>
         <nav id="navbar">
             <img src="images/logo.png" alt="logo" />
             <div class="nav_button">
-                <li><a href="index.html" class="nav-link">ABOUT</a></li>
+                <li><a href="index.php" class="nav-link">ABOUT</a></li>
                 <li><a href="ourwork.html" class="nav-link">OUR WORK</a></li>
-                <li><a href="campaings.html" class="nav-link">CAMPAINGS</a></li>
+                <li><a href="campaings.html" class="nav-link">CAMPAIGNS</a></li>
                 <li><a href="business.php" class="nav-link">BUSINESS</a></li>
                 <li><a href="getinvolved.html" class="nav-link">GET INVOLVED</a></li>
                 <li><a href="contact.html" class="nav-link">CONTACT US</a></li>
-                <li><button onclick="window.location.href='donate.html'">DONATE</button></li>
-                <li><button onclick="window.location.href='login.php'">Login</button></li>
+                <li><button onclick="window.location.href='donate.php'">DONATE</button></li>
 
+                <?php if (isset($_SESSION['user'])): ?>
+                    <li><button onclick="window.location.href='logout.php'">LOGOUT</button></li>
+                <?php else: ?>
+                    <li><button onclick="window.location.href='login.php'">LOGIN</button></li>
+                <?php endif; ?>
             </div>
         </nav>
 
-        <!-- moblie nav from here onward -->
-        <!-- Hamburger Toggle Icon -->
+        <!-- Mobile nav -->
         <div id="hamburger" class="nav-toggle" onclick="openMobileNav()">☰</div>
-
-        <!-- Overlay (clicking closes mobile nav) -->
         <div id="navOverlay" class="nav-overlay" onclick="closeMobileNav()"></div>
-
-        <!-- Mobile Navigation Menu -->
         <div id="mobileNav" class="mobile-nav">
             <div class="close-btn" onclick="closeMobileNav()">×</div>
             <img src="images/logo.png" alt="Logo" class="logo" />
             <ul>
-                <li><a href="index.html" onclick="closeMobileNav()">ABOUT</a></li>
+                <li><a href="index.php" onclick="closeMobileNav()">ABOUT</a></li>
                 <li><a href="ourwork.html" onclick="closeMobileNav()">OUR WORK</a></li>
                 <li><a href="campaings.html" onclick="closeMobileNav()">CAMPAIGNS</a></li>
-                <li><a href="business.php" class="nav-link">BUSINESS</a></li>
+                <li><a href="business.php" onclick="closeMobileNav()">BUSINESS</a></li>
                 <li><a href="getinvolved.html" onclick="closeMobileNav()">GET INVOLVED</a></li>
                 <li><a href="contact.html" onclick="closeMobileNav()">CONTACT US</a></li>
                 <div>
-                    <a href="donate.html" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
 
+                    <a href="donate.php" class="donate-btn" onclick="closeMobileNav()">DONATE</a>
                 </div>
                 <div>
-                    <a href="login.php" class="donate-btn" onclick="closeMobileNav()">Login</a>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <a href="logout.php" class="donate-btn" onclick="closeMobileNav()">LOGOUT</a>
+                    <?php else: ?>
+                        <a href="login.php" class="donate-btn" onclick="closeMobileNav()">LOGIN</a>
+                    <?php endif; ?>
 
                 </div>
-
 
 
             </ul>
         </div>
-
     </header>
     <section class="payment" id="payment">
         <div class="container">
@@ -291,9 +319,22 @@
             </div>
 
             <div class="donate-right">
-                <div class="payment-section">
-                    <h2>Payment Details</h2>
+                <div class="payment-section" id="donationSection">
+                    <h2>
+                        Payment Details
+                        <?php if (isset($_SESSION['user']['role'])): ?>
+                            | <?php echo htmlspecialchars($_SESSION['user']['role']); ?>
+                        <?php endif; ?>
+                    </h2>
                     <form id="donationForm">
+
+                        <!-- ✅ Donation Type -->
+                        <label>Choose Type</label>
+                        <select id="donation_type" required>
+                            <option value="donation">Donation</option>
+                            <option value="membership">Membership</option>
+                        </select>
+
                         <label>Name</label>
                         <input type="text" id="name" required>
 
@@ -316,7 +357,6 @@
                         </div>
                         <small id="amountWords" class="text-muted"></small>
 
-
                         <div class="payment-footer">
                             <div class="payment-icons">
                                 <img src="images/upi_logo.svg" alt="UPI">
@@ -329,6 +369,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
 
     </section>
@@ -402,58 +443,61 @@
             payBtn.textContent = `Pay ₹${value}`;
         });
 
-        document.getElementById('donationForm').addEventListener('submit', function (e) {
+        document.getElementById('donationForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
             const donorData = {
+                type: document.getElementById("donation_type").value, // ✅ send type
                 name: document.getElementById("name").value,
                 email: document.getElementById("email").value,
                 phone: document.getElementById("phone").value,
                 address: document.getElementById("address").value,
                 pan: document.getElementById("pan").value,
-                amount: document.getElementById("amount").value,
+                amount: document.getElementById("amount").value.replace(/,/g, ""), // remove commas
             };
 
             if (donorData.amount <= 0) {
-                alert("Please enter a valid donation amount.");
+                alert("Please enter a valid amount.");
                 return;
             }
 
-            // ✅ Here you can integrate Razorpay, Stripe, or redirect to a payment page
+            // ✅ Razorpay integration
             const options = {
-                key: "YOUR_RAZORPAY_KEY_ID", // Replace with your Razorpay Key
+                key: "YOUR_RAZORPAY_KEY_ID", // Replace with live Razorpay key
                 amount: donorData.amount * 100,
                 currency: "INR",
                 name: "SKGST NGO",
-                description: "Donation",
-                handler: function (response) {
-                    // ✅ On successful payment, save donation
+                description: donorData.type === "membership" ? "Membership Fee" : "Donation",
+                handler: function(response) {
+                    // ✅ Save after successful payment
                     fetch("save_donation.php", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            ...donorData,
-                            payment_id: response.razorpay_payment_id
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                ...donorData,
+                                payment_id: response.razorpay_payment_id
+                            })
                         })
-                    })
                         .then(res => res.json())
                         .then(data => {
                             if (data.success) {
                                 document.getElementById("donationSection").innerHTML = `
-                                <div class="thankyou-container">
-                                <h2>Thank You for Your Donation 🎉</h2>
-                                <p>We truly appreciate your generous support.</p>
+                            <div class="thankyou-container">
+                                <h2>Thank You for Your ${donorData.type === "membership" ? "Membership 🎉" : "Donation 🎉"}</h2>
+                                <p>We truly appreciate your support.</p>
                                 <div class="txn">
-                                    <strong>Transaction ID:</strong> ${data.donation.payment_id}<br>
-                                    <strong>Name:</strong> ${data.donation.name}<br>
-                                    <strong>Email:</strong> ${data.donation.email}<br>
-                                    <strong>Amount:</strong> ₹${data.donation.amount}<br>
-                                    <strong>Date:</strong> ${data.donation.created_at}
+                                    <strong>Transaction ID:</strong> ${data.id}<br>
+                                    <strong>Name:</strong> ${donorData.name}<br>
+                                    <strong>Email:</strong> ${donorData.email}<br>
+                                    <strong>Amount:</strong> ₹${donorData.amount}<br>
+                                    <strong>Status:</strong> Success
                                 </div>
                                 <a href="index.html">← Back to Home</a>
-                                </div>`;
+                            </div>`;
                             } else {
-                                alert("Error saving donation: " + data.message);
+                                alert("Error saving " + donorData.type + ": " + data.message);
                             }
                         });
                 },
@@ -462,7 +506,9 @@
                     email: donorData.email,
                     contact: donorData.phone
                 },
-                theme: { color: "#3399cc" }
+                theme: {
+                    color: "#3399cc"
+                }
             };
 
             const rzp = new Razorpay(options);
@@ -515,14 +561,14 @@
     </script>
 
     <script>
-
         // Convert number to words (Indian format)
         function numberToWords(num) {
             if (num === 0) return "Zero Rupees Only";
 
             const a = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten",
                 "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen",
-                "Eighteen", "Nineteen"];
+                "Eighteen", "Nineteen"
+            ];
             const b = ["", "", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"];
 
             function inWords(n) {
@@ -574,6 +620,75 @@
             amountWords.textContent = num > 0 ? numberToWords(num) : "";
         });
     </script>
+
+    <script>
+        const donationType = document.getElementById('donation_type');
+        const fieldsToLock = ['amount', 'name', 'email', 'phone', 'address']; // used for membership
+        const fieldsToLockDonation = ['name', 'email', 'phone', 'address']; // lock these for donation
+
+        // Get session user data from PHP
+        const sessionUser = <?php echo json_encode($userData); ?>;
+
+        donationType.addEventListener('change', () => {
+            let donationData = {};
+
+            if (donationType.value === 'membership') {
+                donationData = {
+                    amount: 1100, // Membership fee
+                    name: sessionUser.name || "",
+                    email: sessionUser.email || "",
+                    phone: sessionUser.phone || "",
+                    address: sessionUser.address || "",
+                    pan: sessionUser.pan || ""
+                };
+
+                // Lock all fields
+                fieldsToLock.forEach(id => {
+                    const field = document.getElementById(id);
+                    field.value = donationData[id] || "";
+                    field.readOnly = true;
+                });
+
+            } else if (donationType.value === 'donation') {
+                donationData = {
+                    amount: "", // user will enter amount
+                    name: sessionUser.name || "",
+                    email: sessionUser.email || "",
+                    phone: sessionUser.phone || "",
+                    address: sessionUser.address || "",
+                    pan: sessionUser.pan || ""
+                };
+
+                // Lock all except amount and pan
+                fieldsToLockDonation.forEach(id => {
+                    const field = document.getElementById(id);
+                    field.value = donationData[id] || "";
+                    field.readOnly = true;
+                });
+
+                // Make amount and pan editable
+                const amountField = document.getElementById('amount');
+                amountField.value = "";
+                amountField.readOnly = false;
+
+                const panField = document.getElementById('pan');
+                panField.value = donationData.pan || "";
+                panField.readOnly = false;
+            }
+
+            // Update pay button and amount in words
+            payBtn.textContent = donationData.amount ? `Pay ₹${formatIndianNumber(donationData.amount.toString())}` : "Pay ₹0.00";
+            amountWords.textContent = donationData.amount ? numberToWords(donationData.amount) : "";
+        });
+
+        // Run once on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            donationType.dispatchEvent(new Event('change'));
+        });
+    </script>
+
+
+
 
 
 

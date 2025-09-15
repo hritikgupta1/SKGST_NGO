@@ -8,22 +8,42 @@ if (!$data) {
 }
 
 try {
-    $stmt = $pdo->prepare("INSERT INTO donations (name,email,phone,address,pan_number,amount,payment_id,status) 
-                           VALUES (:name,:email,:phone,:address,:pan_number,:amount,:payment_id,'Success')");
+    // Default to donation if type not sent
+    $type = isset($data["type"]) && in_array($data["type"], ["donation", "membership"])
+        ? $data["type"]
+        : "donation";
+
+    if ($type === "donation") {
+        $stmt = $pdo->prepare("INSERT INTO donations 
+            (name, email, phone, address, pan_number, amount, payment_id, status, created_on) 
+            VALUES (:name, :email, :phone, :address, :pan_number, :amount, :payment_id, 'Success', NOW())");
+    } else {
+        $stmt = $pdo->prepare("INSERT INTO memberships 
+            (name, email, phone, address, pan_number, amount, payment_id, status, created_on) 
+            VALUES (:name, :email, :phone, :address, :pan_number, :amount, :payment_id, 'Active', NOW())");
+    }
+
     $stmt->execute([
-        ":name" => $data["name"],
-        ":email" => $data["email"],
-        ":phone" => $data["phone"],
-        ":address" => $data["address"],
+        ":name"       => $data["name"],
+        ":email"      => $data["email"],
+        ":phone"      => $data["phone"],
+        ":address"    => $data["address"],
         ":pan_number" => $data["pan"],
-        ":amount" => $data["amount"],
+        ":amount"     => $data["amount"],
         ":payment_id" => $data["payment_id"]
     ]);
 
     $id = $pdo->lastInsertId();
-    $row = $pdo->query("SELECT * FROM donations WHERE id = $id")->fetch(PDO::FETCH_ASSOC);
+    $row = $stmt->queryString; // for debugging only (remove in prod)
 
-    echo json_encode(["success" => true, "donation" => $row]);
+    echo json_encode([
+        "success" => true,
+        "message" => ucfirst($type) . " saved successfully",
+        "id" => $id
+    ]);
 } catch (Exception $e) {
-    echo json_encode(["success" => false, "message" => $e->getMessage()]);
+    echo json_encode([
+        "success" => false,
+        "message" => $e->getMessage()
+    ]);
 }
